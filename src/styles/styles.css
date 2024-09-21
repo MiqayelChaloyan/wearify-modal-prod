@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Maven+Pro');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Maven Pro"
+}
+
+ul li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+button {
+    outline: none;
+    border: none;
+    background: none;
+}
+
+button:active,
+button:focus {
+    outline: none;
+}
+
+input[type="text"]:focus {
+    border: 1px solid #EDEDED;
+    outline: none;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+
