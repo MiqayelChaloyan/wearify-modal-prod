@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import loaderCloSetReducer from './features/loaderCloSetState';
 import popupSwitchReducer from './features/popupState';
 import measurementsReducer from './features/valuesState'
+import stagesReducer from './features/stagesState';
 
 const store = configureStore({
     reducer: {
         loaderCloSet: loaderCloSetReducer,
         popup: popupSwitchReducer,
-        values: measurementsReducer
+        values: measurementsReducer,
+        stages: stagesReducer,
     }
 });
 

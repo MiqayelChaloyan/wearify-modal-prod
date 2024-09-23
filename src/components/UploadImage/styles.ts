@@ -56,3 +56,10 @@ export const Text = styled.p`
     font-size: 10.98px;
     font-weight: var(--font-weight-extra-bold);
 `;
+
+export const TextError = styled.p`
+    color: var(--red);
+    line-height: 10.1px;
+    font-size: 10.98px;
+    font-weight: var(--font-weight-extra-bold);
+`;

@@ -16,7 +16,8 @@ const Texts = {
     notice: `⚠️ Please ensure that you own the commercial rights to the uploaded images.`,
     reference: 'Reference model image',
     loading: 'Your task is in the queue...',
-    deleteImage: 'Are you sure you want delete the image ?'
+    deleteImage: 'Are you sure you want delete the image ?',
+    largeLoading: 'Creating model images, it’s expected to take 2 minutes.'
 }
 
 const Buttons = {
@@ -30,7 +31,8 @@ const Buttons = {
     yes: 'Yes',
     no: 'No',
     delete: 'Delete',
-    cancel: 'Cancel'
+    cancel: 'Cancel',
+    again: 'Try Again',
 }
 
 const Options = {

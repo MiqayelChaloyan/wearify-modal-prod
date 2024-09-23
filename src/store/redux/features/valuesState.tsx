@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import MEASUREMENTS from 'utils/constants/initialValues';
-import { Image } from 'types';
+import { Image, PersonAttribute } from 'types';
 
 interface MeasurementsState {
-    skin: string | number;
-    age: string | number; 
+    skinTone: PersonAttribute | null;
+    age: PersonAttribute | null; 
     isFemale: boolean;
-    defaultImage: string;
+    defaultImage: Image | null;
     uploadImage: Image | null; 
 };
 
@@ -25,8 +25,11 @@ const measurementsSlice = createSlice({
         DELETE_IMAGE: (state) => {
             state.uploadImage = null;
         },
+        INITIALIZE_STATE: () => {
+            return { ...initialState };
+        },
     },
 });
 
-export const { UPDATE_DATA, ADD_IMAGE, DELETE_IMAGE } = measurementsSlice.actions;
+export const { UPDATE_DATA, ADD_IMAGE, DELETE_IMAGE, INITIALIZE_STATE } = measurementsSlice.actions;
 export default measurementsSlice.reducer;

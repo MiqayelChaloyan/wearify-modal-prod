@@ -1,7 +1,8 @@
 import styled, { keyframes, css } from 'styled-components';
 
 type ProgressBarProps = {
-    isActive: boolean;
+    isactive: boolean;
+    duration: number;
 };
 
 export const Container = styled.div`
@@ -12,11 +13,11 @@ export const Container = styled.div`
 
 const progressAnimation = keyframes`
     0% {
-        width: 1%;
+        width: 0%;
         background-color: #5AD3E1;
     }
     100% {
-        width: 100%;
+        width: 97%;
         background-color: #5AD3E1;
     }
 `;
@@ -33,13 +34,12 @@ export const ProgressBar = styled.div<ProgressBarProps>`
     border-radius: 30px;
     background-image: linear-gradient(to bottom, #ACACAC);
     transition: width 0.4s linear, background-color 0.4s linear;
-
-    width: ${(props) => (props.isActive ? '100%' : '1%')};
-    background-color: ${(props) => (props.isActive ? '#5AD3E1' : 'transparent')};
+    width: ${(props) => (props.isactive ? '97%' : '0%')};
+    background-color: ${(props) => (props.isactive ? '#5AD3E1' : 'transparent')};
 
     ${(props) =>
-        props.isActive &&
+        props.isactive &&
         css`
-            animation: ${progressAnimation} 6s forwards;
+            animation: ${progressAnimation} ${props.duration}s forwards;
         `}
 `;

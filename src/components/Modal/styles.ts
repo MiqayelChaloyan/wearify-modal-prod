@@ -5,6 +5,10 @@ type ButtonProps = {
     $isLoad: boolean;
 };
 
+type LoadingProps = {
+    $isactive: boolean;
+};
+
 export const ModalContainer = styled.div`
     display: none;
     width: 636px;
@@ -13,6 +17,7 @@ export const ModalContainer = styled.div`
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     ${media.xs`
         height: 500px;
         width: 636px;
@@ -43,7 +48,7 @@ export const ModalContainer = styled.div`
 export const Button = styled.button<ButtonProps>`
     display: ${({ $isLoad }) => ($isLoad ? 'block' : 'none')};
     position: absolute;
-    z-index: 1000;
+    z-index: 100;
     border: none;
     background: none;
     padding: 10px;
@@ -53,16 +58,38 @@ export const Button = styled.button<ButtonProps>`
 `;
 
 export const PopupButton = styled.button<ButtonProps>`
-    display: ${({ $isLoad }) => ($isLoad ? 'block' : 'none')};
+  display: ${({ $isLoad }) => ($isLoad ? 'block' : 'none')};
+  position: absolute;
+  z-index: 100;
+  border: none;
+  background: none;
+  padding: 10px;
+  cursor: pointer;
+  width: 55px;
+  height: 50px;
+  right: 20px;
+  bottom: 225px;
+  background-color: transparent;
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+export const Loading = styled.div<LoadingProps>`
+    display: ${({ $isactive }) => ($isactive ? 'block' : 'none')};
+    width: 100%;
+    height: 78px;
+    background-color: var(--pure-gray);
     position: absolute;
-    z-index: 1000;
-    border: none;
-    background: none;
-    padding: 10px;
-    cursor: pointer;
-    width: 55px;
-    height: 50px;
-    right: 20px;
-    bottom: 225px;
-    background-color: red
+    bottom: 0;
+    padding: 20px 40px
+`
+export const Text = styled.p`
+    font-size: 12px;
+    font-weight: var(--font-weight-medium);
+    line-height: 14.1px;
+    color: var(--dark-onyx);
+    text-align: left;
+    margin-bottom: 15px;
 `;

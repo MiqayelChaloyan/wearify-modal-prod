@@ -1,11 +1,16 @@
 import { Container, ProgressBar, ProgressBarContainer } from './styles';
 
-const Loader = () => {
 
+interface Props {
+    isActive: boolean;
+    duration: number;
+};
+
+const Loader = ({ isActive, duration }: Readonly<Props>) => {
     return (
         <Container>
             <ProgressBarContainer>
-                <ProgressBar isActive={true} />
+                <ProgressBar duration={duration} isactive={isActive} />
             </ProgressBarContainer>
         </Container>
     )

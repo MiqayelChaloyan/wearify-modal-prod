@@ -11,27 +11,27 @@ import { Box, Button, Image, Subtitle, Text } from './styles';
 
 
 const Step2 = () => {
-    const { isFemale, skin, age } = useSelector((state: RootState) => state.values);
+    const { isFemale, skinTone, age } = useSelector((state: RootState) => state.values);
     const data = isFemale ? FEMALE_IMAGES : MALE_IMAGES;
     const dispatch = useDispatch();
 
-    const handleChangeSkin = (skinId: string) => {
-        dispatch(UPDATE_DATA({ skin: skinId }));
+    const handleChangeSkin = (skinTone: PersonAttribute) => {
+        dispatch(UPDATE_DATA({ skinTone }));
     };
 
-    const handleChangeAge = (ageId: string) => {
-        dispatch(UPDATE_DATA({ age: ageId }));
+    const handleChangeAge = (age: PersonAttribute) => {
+        dispatch(UPDATE_DATA({ age }));
     };
 
-    const skinTones = data.SKIN_TONE.map((skinTone: PersonAttribute) => (
-        <Button $isActive={skinTone.ID == skin} key={skinTone.ID} onClick={() => handleChangeSkin(skinTone.ID)}>
-            <Image src={skinTone.source} alt={skinTone.ID} />
-            <Text>{skinTone.Skin}</Text>
+    const skinTones = data.SKIN_TONE.map((skinToneItem: PersonAttribute) => (
+        <Button $isActive={skinToneItem.ID == skinTone?.ID} key={skinToneItem.ID} onClick={() => handleChangeSkin(skinToneItem)}>
+            <Image src={skinToneItem.source} alt={skinToneItem.ID} />
+            <Text>{skinToneItem.Skin}</Text>
         </Button>
     ));
 
     const ages = data.AGE.map((item: PersonAttribute) => (
-        <Button $isActive={item.ID == age} key={item.ID} onClick={() => handleChangeAge(item.ID)}>
+        <Button $isActive={item.ID == age?.ID} key={item.ID} onClick={() => handleChangeAge(item)}>
             <Image src={item.source} alt={item.ID} />
             <Text>{item.Age}</Text>
         </Button>

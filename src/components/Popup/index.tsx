@@ -15,13 +15,15 @@ interface PopupProps {
     currentStepIndex: number;
     _handleBack: () => void;
     _handleNext: () => void;
+    _handleTryAgain: () => void;
 };
 
 const Popup = ({
     children,
     currentStepIndex,
     _handleBack,
-    _handleNext
+    _handleNext,
+    _handleTryAgain
 }: Readonly<PopupProps>) => {
     const isOpen = useSelector((state: RootState) => state.popup.isOpen);
 
@@ -37,6 +39,9 @@ const Popup = ({
         case 2:
             stepTitle = Titles.model;
             break;
+        case 3:
+            stepTitle = Titles.generatedModel;
+            break;
     }
 
     return (
@@ -47,11 +52,15 @@ const Popup = ({
                 <Section>
                     {children}
                 </Section>
-                <HorizontalLine/>
+                <HorizontalLine />
                 <Footer>
                     {currentStepIndex === 0 ? (
                         <ButtonVariant1 onClick={_handleNext}>
                             {Buttons.next}
+                        </ButtonVariant1>
+                    ) : currentStepIndex === 3 ? (
+                        <ButtonVariant1 onClick={_handleTryAgain}>
+                            {Buttons.again}
                         </ButtonVariant1>
                     ) : (
                         <>
@@ -59,14 +68,14 @@ const Popup = ({
                                 {Buttons.back}
                             </ButtonVariant2>
                             <ButtonVariant1 onClick={_handleNext}>
-                            {currentStepIndex === 2 ? Buttons.cancel : Buttons.ok}
+                                {currentStepIndex === 2 ? Buttons.cancel : Buttons.ok}
                             </ButtonVariant1>
                         </>
                     )}
                 </Footer>
 
-            </Box>
-        </Container>
+            </Box >
+        </Container >
     )
 };
 

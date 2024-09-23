@@ -32,7 +32,7 @@ const IFrame = ({ src }: Readonly<Props>) => {
         iframe.removeEventListener('load', handleLoad);
       };
     }
-  }, [dispatch]);
+  }, [dispatch]); 
 
   return (
     <>
