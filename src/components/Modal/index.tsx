@@ -26,7 +26,7 @@ type Props = {
 
 const Modal = ({ children }: Readonly<Props>) => {
     const { isLoading } = useSelector((state: RootState) => state.loaderCloSet);
-    const { isStageTwoProcessing } = useSelector((state: RootState) => state.stages);
+    const { isStageTwoProcessing, isStageOneProcessing } = useSelector((state: RootState) => state.stages);
     const dispatch = useDispatch();
 
     const handleSubmit = () => {
@@ -48,6 +48,7 @@ const Modal = ({ children }: Readonly<Props>) => {
         return () => clearTimeout(timer);
     }, []);
 
+
     return (
         <ModalContainer id='web-modal'>
             <Button $isLoad={isLoading} onClick={handleClose}>
@@ -65,7 +66,7 @@ const Modal = ({ children }: Readonly<Props>) => {
             )}
             <Loading $isactive={isStageTwoProcessing}>
                 <Text>{Texts.largeLoading}</Text>
-                <Loader duration={120} isActive={isStageTwoProcessing} />
+                <Loader duration={60} isActive={isStageTwoProcessing} />
             </Loading>
         </ModalContainer>
     )

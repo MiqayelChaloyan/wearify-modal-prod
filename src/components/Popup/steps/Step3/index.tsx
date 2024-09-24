@@ -29,12 +29,15 @@ const Step3 = () => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
+            console.log('Dispatching proceedToStageTwo action');
             dispatch(proceedToStageTwo());
-            return handleSubmit();
-        }, 60000); // 60 seconds (1 minutes)
+            handleSubmit();
+
+        }, 30000); // 60 seconds (1 minutes)
 
         return () => clearTimeout(timer);
     }, []);
+
 
     return (
         <div>
@@ -50,7 +53,7 @@ const Step3 = () => {
 
             <Loading>
                 <Text>{Texts.loading}</Text>
-                <Loader duration={60} isActive={isStageOneProcessing} />
+                <Loader duration={30} isActive={isStageOneProcessing} />
             </Loading>
         </div>
     )
