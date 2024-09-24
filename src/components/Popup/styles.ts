@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from 'styles/globalStyles';
 
 type ContainerProps = {
     $isActive: boolean;
@@ -21,6 +22,25 @@ export const Box = styled.div`
     height: 378px;
     z-index: 2000;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    ${media["2xl"]`
+        top: 50%;
+    `}
+    ${media.xs`
+        top: 50%;
+    `}
+    ${media.xl`
+        top: 50%;
+    `}
+    ${media.lg`
+        top: 62%;
+    `}
+    ${media.md`
+        top: 62%;
+    `}
+    ${media.sm`
+        top: 62%;
+        left: 51%;
+    `}
 `;
 
 export const Section = styled.div`
@@ -37,6 +57,24 @@ export const Overlay = styled.div`
     background-color: var(--dark-gray);
     z-index: 2000;
     opacity: 0.75;
+    ${media["2xl"]`
+        height: 500px;
+    `}
+    ${media.xs`
+        height: 500px;
+    `}
+    ${media.xl`
+        height: 500px;
+    `}
+    ${media.lg`
+        height: 500px;
+    `}
+    ${media.md`
+        height: 500px;
+    `}
+    ${media.sm`
+        height: 500px;
+    `}
 `;
 
 export const Footer = styled.div`

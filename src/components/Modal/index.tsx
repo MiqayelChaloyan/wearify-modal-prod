@@ -43,7 +43,7 @@ const Modal = ({ children }: Readonly<Props>) => {
     useEffect(() => {
         const timer = setTimeout(() => {
             dispatch(finalizeProcessing(true));
-        }, 120000); // 120 seconds (2 minutes)
+        }, 60000); // 60 seconds (1 minutes)
 
         return () => clearTimeout(timer);
     }, []);
