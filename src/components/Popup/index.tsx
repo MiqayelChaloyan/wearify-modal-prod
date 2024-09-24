@@ -48,7 +48,7 @@ const Popup = ({
         <Container $isActive={isOpen}>
             <Overlay />
             <Box>
-                <Header title={stepTitle} />
+                <Header title={stepTitle} _handleTryAgain={_handleTryAgain}/>
                 <Section>
                     {children}
                 </Section>

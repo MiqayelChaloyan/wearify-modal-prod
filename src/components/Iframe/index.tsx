@@ -17,6 +17,8 @@ const IFrame = ({ src }: Readonly<Props>) => {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const dispatch = useDispatch();
 
+  const modal = document.getElementById('web-modal');
+
   useEffect(() => {
     const iframe = iframeRef.current;
 
@@ -32,7 +34,7 @@ const IFrame = ({ src }: Readonly<Props>) => {
         iframe.removeEventListener('load', handleLoad);
       };
     }
-  }, [dispatch]); 
+  }, [modal, dispatch]); 
 
   return (
     <>

@@ -8,17 +8,21 @@ import { IoClose } from 'react-icons/io5';
 import { colors } from 'themes';
 
 import { Container, Box, Button, HorizontalLine, H2, Block } from './styles';
+import { INITIALIZE_STATE } from 'store/redux/features/valuesState';
 
 
 type Props = {
     title: string;
+    _handleTryAgain: () => void;
 };
 
-const Header = ({ title }: Readonly<Props>) => {
+const Header = ({ title, _handleTryAgain }: Readonly<Props>) => {
     const dispatch = useDispatch();
 
     const handleSubmit = () => {
         dispatch(handleSwitchStatusPopup());
+        dispatch(INITIALIZE_STATE());
+        _handleTryAgain();
     };
 
     return (

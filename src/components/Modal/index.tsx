@@ -16,6 +16,8 @@ import { Texts } from 'utils/constants';
 import { colors } from 'themes';
 
 import { Button, Text, Loading, ModalContainer, PopupButton } from './styles';
+import FITHide from 'components/FITHide';
+import GroupHide from 'components/GroupHide';
 
 
 type Props = {
@@ -31,6 +33,13 @@ const Modal = ({ children }: Readonly<Props>) => {
         dispatch(handleSwitchStatusPopup());
     };
 
+    const handleClose = () => {
+        const modal = document.getElementById('web-modal');
+        if (modal) {
+            modal.style.display = "none";
+        }
+    };
+
     useEffect(() => {
         const timer = setTimeout(() => {
             dispatch(finalizeProcessing(true));
@@ -41,14 +50,19 @@ const Modal = ({ children }: Readonly<Props>) => {
 
     return (
         <ModalContainer id='web-modal'>
-            <Button $isLoad={isLoading}>
+            <Button $isLoad={isLoading} onClick={handleClose}>
                 <IoClose size={30} color={colors.gray} />
             </Button>
             {children}
             <PopupButton disabled={!!isStageTwoProcessing} $isLoad={isLoading} onClick={handleSubmit}>
-                <PeopleIcon fill={isStageTwoProcessing ? 'black' : 'rgb(235, 235, 237)' }/>
+                <PeopleIcon fill={'rgb(235, 235, 237)'} />
             </PopupButton>
-
+            {isStageTwoProcessing && (
+                <>
+                    <FITHide />
+                    <GroupHide />
+                </>
+            )}
             <Loading $isactive={isStageTwoProcessing}>
                 <Text>{Texts.largeLoading}</Text>
                 <Loader duration={120} isActive={isStageTwoProcessing} />
