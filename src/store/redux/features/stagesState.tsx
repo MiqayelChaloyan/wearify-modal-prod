@@ -16,12 +16,10 @@ const stagesSlice = createSlice({
     initialState,
     reducers: {
         proceedToStageTwo: (state) => {
-            console.log('proceedToStageTwo action dispatched'); // Add logging here
             state.isStageOneProcessing = false;
             state.isStageTwoProcessing = true;
         },
         finalizeProcessing: (state, action) => {
-            console.log('finalizeProcessing action dispatched', action.payload); // Log action payload
             state.isStageTwoProcessing = false;
             state.isResultAvailable = action.payload;
         },

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { handleSwitchLoading } from 'store/redux/features/loaderCloSetState';
@@ -9,7 +9,7 @@ import { Box, Container, HideBorder, Iframe } from './styles';
 
 
 type Props = {
-  src: string;
+  src?: string;
 };
 
 const IFrame = ({ src }: Readonly<Props>) => {

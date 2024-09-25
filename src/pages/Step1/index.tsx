@@ -1,17 +1,34 @@
+import { useDispatch } from 'react-redux';
+
 import IframeWrapper from 'components/Iframe';
 import Navigation from 'components/Popup/navigation';
 
-import { closetUrl } from 'utils/tests/__tests__';
+import { data } from 'utils/tests/__tests__';
+import { UPDATE_DATA, UPDATE_DEFAULT_IMAGE } from 'store/redux/features/valuesState';
+import { PersonAttribute } from 'types';
+import { useEffect } from 'react';
 
 
 const Step1 = () => {
+    const element = document.getElementById('web-modal');
+    const productId = element?.getAttribute('product-id');
+    const foundProduct = data.find(product => product.id === productId);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (productId) {
+            dispatch(UPDATE_DATA({ isFemale: foundProduct?.isFemale }));
+            dispatch(UPDATE_DEFAULT_IMAGE())
+        }
+    }, [element, foundProduct, dispatch]);
 
     return (
         <>
-            <IframeWrapper src={closetUrl} />
+            <IframeWrapper src={foundProduct?.closeUrl} />
             <Navigation />
         </>
-    )
+    );
 };
 
 export default Step1;

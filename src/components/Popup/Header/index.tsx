@@ -35,7 +35,9 @@ const Header = ({ title, _handleTryAgain }: Readonly<Props>) => {
             <Box>
                 <H2>{title}</H2>
             </Box>
-            <HorizontalLine />
+            <HorizontalLine>
+                <div />
+            </HorizontalLine>
         </Container>
     )
 };

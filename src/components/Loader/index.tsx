@@ -10,7 +10,9 @@ const Loader = ({ isActive, duration }: Readonly<Props>) => {
     return (
         <Container>
             <ProgressBarContainer>
-                <ProgressBar duration={duration} isactive={isActive} />
+                <ProgressBar duration={duration} isactive={isActive} >
+                    <div />
+                </ProgressBar>
             </ProgressBarContainer>
         </Container>
     )

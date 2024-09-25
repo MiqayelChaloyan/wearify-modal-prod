@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { proceedToStageTwo } from 'store/redux/features/stagesState';
@@ -11,9 +11,10 @@ import { FaArrowRight } from 'react-icons/fa6';
 
 import { colors } from 'themes';
 
-import { Texts } from 'utils/constants';
+import { Product } from 'types';
 
-import { closetData } from 'utils/tests/__tests__';
+import { Texts } from 'utils/constants';
+import { data } from 'utils/tests/__tests__';
 
 import { Box, Image1, Image2, Loading, Section, Text } from './styles';
 
@@ -23,17 +24,29 @@ const Step3 = () => {
     const { isStageOneProcessing } = useSelector((state: RootState) => state.stages);
     const dispatch = useDispatch();
 
+    const [product, setProduct] = useState<Product | undefined>(undefined);
+
+    useEffect(() => {
+        const element = document.getElementById('web-modal');
+        const productId = element?.getAttribute('product-id');
+        // const productId = '8752854466795' // AZAT MARD
+
+        if (productId) {
+            const foundProduct = data.find(product => product.id === productId);
+            setProduct(foundProduct);
+        }
+    }, []);
+
     const handleSubmit = () => {
         dispatch(handleSwitchStatusPopup());
     };
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            console.log('Dispatching proceedToStageTwo action');
             dispatch(proceedToStageTwo());
             handleSubmit();
 
-        }, 30000); // 60 seconds (1 minutes)
+        }, 25000); // 25 seconds 
 
         return () => clearTimeout(timer);
     }, []);
@@ -43,7 +56,7 @@ const Step3 = () => {
         <div>
             <Section>
                 <Box>
-                    <Image1 src={closetData.imgPath} alt={closetData.id} />
+                    <Image1 src={product?.imgPath} alt={product?.id} />
                 </Box>
                 <FaArrowRight size={20} color={colors.lightGray} />
                 <Box>
@@ -53,7 +66,7 @@ const Step3 = () => {
 
             <Loading>
                 <Text>{Texts.loading}</Text>
-                <Loader duration={30} isActive={isStageOneProcessing} />
+                <Loader duration={25} isActive={isStageOneProcessing} />
             </Loading>
         </div>
     )

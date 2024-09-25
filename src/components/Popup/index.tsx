@@ -46,13 +46,17 @@ const Popup = ({
 
     return (
         <Container $isActive={isOpen}>
-            <Overlay />
+            <Overlay>
+                <div />
+            </Overlay>
             <Box>
-                <Header title={stepTitle} _handleTryAgain={_handleTryAgain}/>
+                <Header title={stepTitle} _handleTryAgain={_handleTryAgain} />
                 <Section>
                     {children}
                 </Section>
-                <HorizontalLine />
+                <HorizontalLine>
+                    <div />
+                </HorizontalLine>
                 <Footer>
                     {currentStepIndex === 0 ? (
                         <ButtonVariant1 onClick={_handleNext}>
@@ -73,7 +77,6 @@ const Popup = ({
                         </>
                     )}
                 </Footer>
-
             </Box >
         </Container >
     )

@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import { loacl, FEMALE_IMAGES, MALE_IMAGES } from 'utils/helpers';
+import { data } from 'utils/tests/__tests__';
 
 const MEASUREMENTS = {
     skinTone: null,
@@ -9,7 +10,7 @@ const MEASUREMENTS = {
     uploadImage: null
 };
 
-const getDefaultValues = (isFemale) => {
+export const getDefaultValues = (isFemale) => {
     const defaultImageObj = loacl.find(item => item.isFemale === isFemale);
     const imagesArray = isFemale ? FEMALE_IMAGES : MALE_IMAGES;
     const skinTone = imagesArray.SKIN_TONE[3];

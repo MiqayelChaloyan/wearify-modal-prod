@@ -16,7 +16,9 @@ const RemoveImage = ({ handleSubmit, handleDelete }: Readonly<Props>) => {
 
     return (
         <>
-            <Overlay />
+            <Overlay>
+                <div />
+            </Overlay>
             <Container>
                 <Div>
                     <Box>
@@ -28,9 +30,10 @@ const RemoveImage = ({ handleSubmit, handleDelete }: Readonly<Props>) => {
                         </Button>
                     </Box>
                 </Div>
-                <HorizontalLine />
+                <HorizontalLine>
+                    <div />
+                </HorizontalLine>
                 <Text>{Texts.deleteImage}</Text>
-
                 <Footer>
                     <CancelButton onClick={handleSubmit}>
                         {Buttons.cancel}

@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -15,6 +15,7 @@ import { Options } from 'utils/constants';
 import { colors } from 'themes';
 
 import { Box, Text, Button, Icon, Image, ImageButton, TextError } from './styles';
+import { getDefaultValues } from 'utils/constants/initialValues';
 
 
 const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
@@ -24,7 +25,7 @@ const ImageUpload = () => {
     const [errorMessage, setErrorMessage] = useState<string>('');
 
     const fileInputRef = useRef<HTMLInputElement | null>(null);
-    const uploadImage = useSelector((state: RootState) => state.values.uploadImage);
+    const { uploadImage, defaultImage } = useSelector((state: RootState) => state.values);
     const dispatch = useDispatch();
 
 
@@ -48,13 +49,21 @@ const ImageUpload = () => {
     };
 
     const handleSubmit = useCallback(() => {
-        setIsOpen((prevIsOpen) => !prevIsOpen);
-    }, [isOpen]);
+        if (uploadImage) {
+            setIsOpen((prevIsOpen) => !prevIsOpen);
+        }
+    }, [isOpen, uploadImage]);
 
     const handleDelete = useCallback(() => {
         dispatch(DELETE_IMAGE());
         setIsOpen(false);
     }, []);
+
+    useEffect(() => {
+        if (uploadImage) {
+            setErrorMessage('');
+        }
+    }, [uploadImage]);
 
 
     return (
@@ -78,9 +87,12 @@ const ImageUpload = () => {
                             {Options.upload}
                         </Text>
                     </Button>
-                    {uploadImage && (
-                        <ImageButton onClick={handleSubmit}>
-                            <Image src={uploadImage.source} alt={uploadImage.id} />
+                    {(uploadImage || defaultImage) && (
+                        <ImageButton $isActive={!!uploadImage?.source} onClick={handleSubmit}>
+                            <Image
+                                src={uploadImage?.source || defaultImage?.source}
+                                alt={uploadImage?.id || defaultImage?.id}
+                            />
                         </ImageButton>
                     )}
                 </Box>

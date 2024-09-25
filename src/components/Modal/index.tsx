@@ -1,4 +1,4 @@
-import { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { handleSwitchStatusPopup } from 'store/redux/features/popupState';
@@ -8,16 +8,20 @@ import { RootState } from 'store/redux';
 import { IoClose } from 'react-icons/io5';
 
 import Loader from 'components/Loader';
+import FITHide from 'components/FITHide';
+import GroupHide from 'components/GroupHide';
 
 import PeopleIcon from 'assets/icons/people';
 
+import { Product } from 'types';
+
 import { Texts } from 'utils/constants';
+import { data } from 'utils/tests/__tests__';
 
 import { colors } from 'themes';
 
 import { Button, Text, Loading, ModalContainer, PopupButton } from './styles';
-import FITHide from 'components/FITHide';
-import GroupHide from 'components/GroupHide';
+
 
 
 type Props = {
@@ -26,7 +30,7 @@ type Props = {
 
 const Modal = ({ children }: Readonly<Props>) => {
     const { isLoading } = useSelector((state: RootState) => state.loaderCloSet);
-    const { isStageTwoProcessing, isStageOneProcessing } = useSelector((state: RootState) => state.stages);
+    const { isStageTwoProcessing } = useSelector((state: RootState) => state.stages);
     const dispatch = useDispatch();
 
     const handleSubmit = () => {
@@ -43,11 +47,11 @@ const Modal = ({ children }: Readonly<Props>) => {
     useEffect(() => {
         const timer = setTimeout(() => {
             dispatch(finalizeProcessing(true));
-        }, 60000); // 60 seconds (1 minutes)
+        }, 50000); // 50 seconds 
 
         return () => clearTimeout(timer);
     }, []);
-
+    
 
     return (
         <ModalContainer id='web-modal'>
@@ -66,7 +70,7 @@ const Modal = ({ children }: Readonly<Props>) => {
             )}
             <Loading $isactive={isStageTwoProcessing}>
                 <Text>{Texts.largeLoading}</Text>
-                <Loader duration={60} isActive={isStageTwoProcessing} />
+                <Loader duration={50} isActive={isStageTwoProcessing} />
             </Loading>
         </ModalContainer>
     )

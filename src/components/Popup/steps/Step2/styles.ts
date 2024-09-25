@@ -33,7 +33,7 @@ export const Subtitle = styled.h2`
     font-size: 12px;
     font-weight: var(--font-weight-medium);
     text-align: center;
-    padding: 22px 0 0 0;
+    padding: 10px 0 0;
 `;
 
 export const Text = styled.p`

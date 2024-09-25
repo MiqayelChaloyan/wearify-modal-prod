@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+type ImageButtonPrrops = {
+    $isActive: boolean;
+};
+
 export const Box = styled.div`
     display: flex;
     justify-content: center;
@@ -22,13 +26,14 @@ export const Button = styled.button`
     transition: var(--transition);
     background-color: var(--powder-blue);
     margin: 5px;
-    padding: 5px;
+    padding: 2px;
+    border: none;    
     &:hover {
         opacity: 0.65;
     }
 `;
 
-export const ImageButton = styled.button`
+export const ImageButton = styled.button<ImageButtonPrrops>`
     display: grid;
     justify-content: center;
     align-items: center;
@@ -38,7 +43,7 @@ export const ImageButton = styled.button`
     transition: var(--transition);
     background-color: var(--powder-blue);
     margin: 5px;
-    border: 3px solid var(--powder-blue);
+    border: ${({ $isActive }) => ($isActive ? '3px solid var(--powder-blue)' : '3px solid var(--blue)')};
     &:hover {
         border: 3px solid var(--blue);
     }

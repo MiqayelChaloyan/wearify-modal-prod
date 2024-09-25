@@ -14,10 +14,12 @@ export const ModalContainer = styled.div`
     width: 636px;
     height: 500px;
     position: fixed;
+    z-index: 100000;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    background-color: #ededed;
     ${media["2xl"]`
         height: 500px;
         width: 636px;
@@ -68,29 +70,29 @@ export const PopupButton = styled.button<ButtonProps>`
     width: 55px;
     height: 50px;
     right: 20px;
-    bottom: 225px;
+    bottom: 195px;
     background-color: transparent;
     transition: transform 0.3s ease;
     &:hover {
         transform: scale(1.1);
     }
     ${media["2xl"]`
-        bottom: 225px;
+        bottom: 195px;
     `}
     ${media.xs`
-        bottom: 225px;
+        bottom: 195px;
     `}
     ${media.xl`
-        bottom: 225px;
+        bottom: 195px;
     `}
     ${media.lg`
-        bottom: 125px;
+        bottom: 95px;
     `}
     ${media.md`
-        bottom: 125px;
+        bottom: 95px;
     `}
     ${media.sm`
-        bottom: 125px;
+        bottom: 95px;
         right: 15px;
     `}
 `;

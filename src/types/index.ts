@@ -11,3 +11,11 @@ export type PersonAttribute = {
     Skin: string;
     source: string;
 };
+
+export type Product = {
+    id: string;
+    name: string;
+    imgPath: string;
+    closeUrl: string;
+    isFemale: boolean;
+};

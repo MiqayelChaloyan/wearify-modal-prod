@@ -1,13 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import MEASUREMENTS from 'utils/constants/initialValues';
 import { Image, PersonAttribute } from 'types';
+import { v4 as uuidv4 } from 'uuid';
+import { loacl } from 'utils/helpers';
 
 interface MeasurementsState {
     skinTone: PersonAttribute | null;
-    age: PersonAttribute | null; 
+    age: PersonAttribute | null;
     isFemale: boolean;
     defaultImage: Image | null;
-    uploadImage: Image | null; 
+    uploadImage: Image | null;
 };
 
 const initialState: MeasurementsState = { ...MEASUREMENTS };
@@ -28,8 +30,18 @@ const measurementsSlice = createSlice({
         INITIALIZE_STATE: () => {
             return { ...initialState };
         },
-    },
+        UPDATE_DEFAULT_IMAGE: (state) => {
+            const defaultImageObj = loacl.find(item => item.isFemale === state.isFemale);
+
+            const data = {
+                id: uuidv4(),
+                source: defaultImageObj?.imagePath,
+            };
+
+            return { ...state, data }
+    }
+},
 });
 
-export const { UPDATE_DATA, ADD_IMAGE, DELETE_IMAGE, INITIALIZE_STATE } = measurementsSlice.actions;
+export const { UPDATE_DATA, ADD_IMAGE, DELETE_IMAGE, UPDATE_DEFAULT_IMAGE, INITIALIZE_STATE } = measurementsSlice.actions;
 export default measurementsSlice.reducer;

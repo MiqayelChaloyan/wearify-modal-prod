@@ -91,7 +91,7 @@ export const ButtonVariant1 = styled.button`
     color: var(--white);
     cursor: pointer;
     text-decoration: none;
-    margin: 15px 4px;
+    margin: 6px 4px;
     background-color: var(--light-black);
     border: 1px solid var(--light-black);
     text-transform: uppercase;
@@ -110,7 +110,7 @@ export const ButtonVariant2 = styled.button`
     color: var(--white);
     cursor: pointer;
     text-decoration: none;
-    margin: 15px 4px;
+    margin: 6px 4px;
     background-color: var(--light-gray);
     border: 1px solid var(--light-gray);
     text-transform: uppercase;
