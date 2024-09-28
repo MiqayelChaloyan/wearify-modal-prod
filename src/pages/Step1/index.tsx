@@ -11,7 +11,8 @@ import { useEffect } from 'react';
 
 const Step1 = () => {
     const element = document.getElementById('web-modal');
-    const productId = element?.getAttribute('product-id');
+    // const productId = element?.getAttribute('product-id');
+    const productId = '8752854466795'
     const foundProduct = data.find(product => product.id === productId);
 
     const dispatch = useDispatch();
@@ -19,7 +20,8 @@ const Step1 = () => {
     useEffect(() => {
         if (productId) {
             dispatch(UPDATE_DATA({ isFemale: foundProduct?.isFemale }));
-            dispatch(UPDATE_DEFAULT_IMAGE())
+            dispatch(UPDATE_DEFAULT_IMAGE(foundProduct?.isFemale || false))
+            
         }
     }, [element, foundProduct, dispatch]);
 

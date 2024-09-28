@@ -25,14 +25,14 @@ const Step2 = () => {
 
     const skinTones = data.SKIN_TONE.map((skinToneItem: PersonAttribute) => (
         <Button $isActive={skinToneItem.ID == skinTone?.ID} key={skinToneItem.ID} onClick={() => handleChangeSkin(skinToneItem)}>
-            <Image src={skinToneItem.source} alt={skinToneItem.ID} />
+            <Image src={skinToneItem.source} alt={skinToneItem.ID} loading="lazy" />
             <Text>{skinToneItem.Skin}</Text>
         </Button>
     ));
 
     const ages = data.AGE.map((item: PersonAttribute) => (
         <Button $isActive={item.ID == age?.ID} key={item.ID} onClick={() => handleChangeAge(item)}>
-            <Image src={item.source} alt={item.ID} />
+            <Image src={item.source} alt={item.ID} loading="lazy" />
             <Text>{item.Age}</Text>
         </Button>
     ));

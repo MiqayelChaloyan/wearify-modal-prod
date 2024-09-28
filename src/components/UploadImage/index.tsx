@@ -92,6 +92,7 @@ const ImageUpload = () => {
                             <Image
                                 src={uploadImage?.source || defaultImage?.source}
                                 alt={uploadImage?.id || defaultImage?.id}
+                                loading="lazy"
                             />
                         </ImageButton>
                     )}

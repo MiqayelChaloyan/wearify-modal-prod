@@ -2,13 +2,14 @@ import React from 'react';
 
 import { useDispatch } from 'react-redux';
 import { handleSwitchStatusPopup } from 'store/redux/features/popupState';
+import { INITIALIZE_STATE } from 'store/redux/features/valuesState';
+import { INITIALIZE_STATE_PROCESSING } from 'store/redux/features/stagesState';
 
 import { IoClose } from 'react-icons/io5';
 
 import { colors } from 'themes';
 
 import { Container, Box, Button, HorizontalLine, H2, Block } from './styles';
-import { INITIALIZE_STATE } from 'store/redux/features/valuesState';
 
 
 type Props = {
@@ -22,6 +23,7 @@ const Header = ({ title, _handleTryAgain }: Readonly<Props>) => {
     const handleSubmit = () => {
         dispatch(handleSwitchStatusPopup());
         dispatch(INITIALIZE_STATE());
+        dispatch(INITIALIZE_STATE_PROCESSING());
         _handleTryAgain();
     };
 

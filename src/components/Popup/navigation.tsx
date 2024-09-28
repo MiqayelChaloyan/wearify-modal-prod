@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { handleSwitchStatusPopup } from 'store/redux/features/popupState';
+import { INITIALIZE_STATE } from 'store/redux/features/valuesState';
+import { INITIALIZE_STATE_PROCESSING, setProcessingState } from 'store/redux/features/stagesState';
 import { RootState } from 'store/redux';
 
 import { useMultistepForm } from 'hooks/useMultistepForm';
@@ -11,8 +14,6 @@ import Step3 from './steps/Step3';
 import Step4 from './steps/Step4';
 
 import Popup from './index';
-import { handleSwitchStatusPopup } from 'store/redux/features/popupState';
-import { INITIALIZE_STATE } from 'store/redux/features/valuesState';
 
 
 const Navigation: React.FC = () => {
@@ -29,6 +30,10 @@ const Navigation: React.FC = () => {
 
     const _handleNext = () => {
         if (currentStepIndex < 2) {
+            if (currentStepIndex === 1) {
+                dispatch(setProcessingState(true));
+            }
+
             return next();
         }
 
@@ -43,15 +48,20 @@ const Navigation: React.FC = () => {
 
     const _handleTryAgain = () => {
         dispatch(INITIALIZE_STATE());
+        dispatch(INITIALIZE_STATE_PROCESSING());
         return goTo(0);
     }
 
-    useEffect(() => {
+
+    const _handleResult = () => {
         if (isResultAvailable) {
             goTo(3);
             dispatch(handleSwitchStatusPopup());
         }
-    }, [isResultAvailable])
+    }
+
+    useEffect(() => _handleResult(), [isResultAvailable]);
+
 
     return (
         <Popup

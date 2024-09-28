@@ -1,8 +1,8 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { handleSwitchStatusPopup } from 'store/redux/features/popupState';
-import { finalizeProcessing } from 'store/redux/features/stagesState';
+import { finalizeProcessing, setStageTwoProcessing } from 'store/redux/features/stagesState';
 import { RootState } from 'store/redux';
 
 import { IoClose } from 'react-icons/io5';
@@ -13,15 +13,12 @@ import GroupHide from 'components/GroupHide';
 
 import PeopleIcon from 'assets/icons/people';
 
-import { Product } from 'types';
-
 import { Texts } from 'utils/constants';
-import { data } from 'utils/tests/__tests__';
 
 import { colors } from 'themes';
 
 import { Button, Text, Loading, ModalContainer, PopupButton } from './styles';
-
+// import { data } from 'utils/tests/__tests__';
 
 
 type Props = {
@@ -46,8 +43,9 @@ const Modal = ({ children }: Readonly<Props>) => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
+            dispatch(setStageTwoProcessing(false));
             dispatch(finalizeProcessing(true));
-        }, 50000); // 50 seconds 
+        }, 60000); // 60 seconds 
 
         return () => clearTimeout(timer);
     }, []);
@@ -70,7 +68,7 @@ const Modal = ({ children }: Readonly<Props>) => {
             )}
             <Loading $isactive={isStageTwoProcessing}>
                 <Text>{Texts.largeLoading}</Text>
-                <Loader duration={50} isActive={isStageTwoProcessing} />
+                <Loader duration={60} isActive={isStageTwoProcessing} />
             </Loading>
         </ModalContainer>
     )

@@ -30,18 +30,18 @@ const measurementsSlice = createSlice({
         INITIALIZE_STATE: () => {
             return { ...initialState };
         },
-        UPDATE_DEFAULT_IMAGE: (state) => {
-            const defaultImageObj = loacl.find(item => item.isFemale === state.isFemale);
-
-            const data = {
-                id: uuidv4(),
-                source: defaultImageObj?.imagePath,
-            };
-
-            return { ...state, data }
-    }
-},
+        UPDATE_DEFAULT_IMAGE: (state, action: PayloadAction<boolean>) => {
+            const defaultImageObj = loacl.find(item => item.isFemale === action.payload);
+            if (defaultImageObj) {
+                state.defaultImage = {
+                    id: uuidv4(),
+                    source: defaultImageObj.imagePath,
+                };
+            }
+        },
+    },
 });
+
 
 export const { UPDATE_DATA, ADD_IMAGE, DELETE_IMAGE, UPDATE_DEFAULT_IMAGE, INITIALIZE_STATE } = measurementsSlice.actions;
 export default measurementsSlice.reducer;
