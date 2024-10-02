@@ -19,3 +19,9 @@ export type Product = {
     closeUrl: string;
     isFemale: boolean;
 };
+
+export type Skin = {
+    ID: number;
+    source: string;
+    title: string;
+};

@@ -2,6 +2,7 @@ import { ReactElement, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { handleSwitchStatusPopup } from 'store/redux/features/popupState';
+
 import { finalizeProcessing, setStageTwoProcessing } from 'store/redux/features/stagesState';
 import { RootState } from 'store/redux';
 
@@ -12,13 +13,14 @@ import FITHide from 'components/FITHide';
 import GroupHide from 'components/GroupHide';
 
 import PeopleIcon from 'assets/icons/people';
+import FitIcon from 'assets/icons/fit';
 
 import { Texts } from 'utils/constants';
 
 import { colors } from 'themes';
 
-import { Button, Text, Loading, ModalContainer, PopupButton } from './styles';
-// import { data } from 'utils/tests/__tests__';
+import { Button, Text, Loading, ModalContainer, PopupButton, PopupFitButton, HideAllButtons } from './styles';
+import { handleSwitchStatusPopupFit } from 'store/redux/features/popupFitState';
 
 
 type Props = {
@@ -28,11 +30,19 @@ type Props = {
 const Modal = ({ children }: Readonly<Props>) => {
     const { isLoading } = useSelector((state: RootState) => state.loaderCloSet);
     const { isStageTwoProcessing } = useSelector((state: RootState) => state.stages);
+    const { closetUrl } = useSelector((state: RootState) => state.values);
+
     const dispatch = useDispatch();
 
-    const handleSubmit = () => {
+
+    const _handleChangePopupFit = () => {
+        dispatch(handleSwitchStatusPopupFit());
+    };
+
+    const _handleChangePopup = () => {
         dispatch(handleSwitchStatusPopup());
     };
+
 
     const handleClose = () => {
         const modal = document.getElementById('web-modal');
@@ -49,7 +59,9 @@ const Modal = ({ children }: Readonly<Props>) => {
 
         return () => clearTimeout(timer);
     }, []);
-    
+
+
+    // let load = isLoading || closetUrl.trim().length > 0;
 
     return (
         <ModalContainer id='web-modal'>
@@ -57,15 +69,28 @@ const Modal = ({ children }: Readonly<Props>) => {
                 <IoClose size={30} color={colors.gray} />
             </Button>
             {children}
-            <PopupButton disabled={!!isStageTwoProcessing} $isLoad={isLoading} onClick={handleSubmit}>
+            <PopupFitButton disabled={!!isStageTwoProcessing} $isLoad={isLoading} onClick={_handleChangePopupFit}>
+                <FitIcon fill={'rgb(235, 235, 237)'} />
+            </PopupFitButton>
+            <PopupButton disabled={!closetUrl && !!isStageTwoProcessing} $isLoad={isLoading} onClick={_handleChangePopup}>
                 <PeopleIcon fill={'rgb(235, 235, 237)'} />
             </PopupButton>
+            <FITHide />
+
+            {/* {closetUrl?.trim() && (
+                <>
+                    <HideAllButtons>
+                        <div />
+                    </HideAllButtons>
+                </>
+            )} */}
             {isStageTwoProcessing && (
                 <>
                     <FITHide />
                     <GroupHide />
                 </>
             )}
+
             <Loading $isactive={isStageTwoProcessing}>
                 <Text>{Texts.largeLoading}</Text>
                 <Loader duration={60} isActive={isStageTwoProcessing} />

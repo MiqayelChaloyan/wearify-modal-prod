@@ -8,8 +8,6 @@ admin.initializeApp({
     storageBucket: "gs://w2wprod-f2fd0.appspot.com"
 });
 
-
-
 const db = admin.database();
 const dbRef = db.ref("new/");
 

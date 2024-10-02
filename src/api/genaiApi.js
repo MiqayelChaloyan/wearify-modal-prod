@@ -8,11 +8,11 @@ const API_ENDPOINTS = {
 export const getGenaiData = async (isFemale, skinTone, age) => {
     try {
         let gender = isFemale ? true : false;
-        console.log(gender, skinTone, age)
+        // console.log(gender, skinTone, age)
         const url = `${GENAI_API_URL}${API_ENDPOINTS.gen_id}?isFemale=${gender}&skin=${skinTone}&age=${age}`;
 
         const response = await axios.post(url);
-        console.log(response)
+        // console.log(response)
         return response.data;
     } catch (error) {
         // if (error.response) {

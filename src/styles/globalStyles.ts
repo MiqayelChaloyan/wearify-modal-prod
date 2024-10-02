@@ -17,6 +17,7 @@ export const GlobalStyle = createGlobalStyle`
     --dark-onyx: #424242;
     --red: #D93654;
     --pure-gray: #D9D9D980;
+    --light-color: #EDEDED;
 
     --font-weight-thin: 100;
     --font-weight-extra-light: 200;

@@ -1,6 +1,5 @@
 // const closetUrl = 'https://style.clo-set.com/fitting/VHFF%2FhHOfsJJDtlwD7hvZg%3D%3D?ui_colorway=0&ui_size=0&ui_shopping_bag=0&ui_like=0&ui_logo=none';
 
-
 const data = [
     {
         id: '8752854466795',

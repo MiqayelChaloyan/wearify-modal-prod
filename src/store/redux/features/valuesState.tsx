@@ -1,8 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import MEASUREMENTS from 'utils/constants/initialValues';
-import { Image, PersonAttribute } from 'types';
+import { Image, PersonAttribute, Skin } from 'types';
+
 import { v4 as uuidv4 } from 'uuid';
+
 import { loacl } from 'utils/helpers';
+import MEASUREMENTS from 'utils/constants/initialValues';
+
 
 interface MeasurementsState {
     skinTone: PersonAttribute | null;
@@ -10,6 +13,10 @@ interface MeasurementsState {
     isFemale: boolean;
     defaultImage: Image | null;
     uploadImage: Image | null;
+    height: number;
+    weight: number;
+    skin: Skin | null;
+    closetUrl?: string;
 };
 
 const initialState: MeasurementsState = { ...MEASUREMENTS };
@@ -31,7 +38,7 @@ const measurementsSlice = createSlice({
             return { ...initialState };
         },
         UPDATE_DEFAULT_IMAGE: (state, action: PayloadAction<boolean>) => {
-            const defaultImageObj = loacl.find(item => item.isFemale === action.payload);
+            const defaultImageObj = loacl.find(item => item.isFemale == action.payload);
             if (defaultImageObj) {
                 state.defaultImage = {
                     id: uuidv4(),
@@ -39,9 +46,12 @@ const measurementsSlice = createSlice({
                 };
             }
         },
+        ADD_CLOSET_URL: (state, action: PayloadAction<string>) => {
+            state.closetUrl = action.payload
+        }
     },
 });
 
 
-export const { UPDATE_DATA, ADD_IMAGE, DELETE_IMAGE, UPDATE_DEFAULT_IMAGE, INITIALIZE_STATE } = measurementsSlice.actions;
+export const { UPDATE_DATA, ADD_IMAGE, DELETE_IMAGE, UPDATE_DEFAULT_IMAGE, INITIALIZE_STATE, ADD_CLOSET_URL } = measurementsSlice.actions;
 export default measurementsSlice.reducer;

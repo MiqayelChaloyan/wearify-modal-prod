@@ -1,13 +1,16 @@
 import { v4 as uuidv4 } from 'uuid';
 import { loacl, FEMALE_IMAGES, MALE_IMAGES } from 'utils/helpers';
-import { data } from 'utils/tests/__tests__';
 
 const MEASUREMENTS = {
     skinTone: null,
     age: null,
     isFemale: false,
     defaultImage: null,
-    uploadImage: null
+    uploadImage: null,
+    height: 162,
+    weight: 50,
+    skin: null,
+    closetUrl: '',
 };
 
 export const getDefaultValues = (isFemale) => {
@@ -15,12 +18,14 @@ export const getDefaultValues = (isFemale) => {
     const imagesArray = isFemale ? FEMALE_IMAGES : MALE_IMAGES;
     const skinTone = imagesArray.SKIN_TONE[3];
     const age = imagesArray.AGE[2];
+    const skin = imagesArray.SKIN[0];
 
     return defaultImageObj && {
         id: uuidv4(),
         source: defaultImageObj.imagePath,
         skinTone: skinTone,
-        age: age
+        age: age,
+        skin: skin
     }
 };
 
@@ -33,5 +38,6 @@ MEASUREMENTS.defaultImage = {
 
 MEASUREMENTS.skinTone = defaultValues.skinTone;
 MEASUREMENTS.age = defaultValues.age;
+MEASUREMENTS.skin = defaultValues.skin;
 
 export default MEASUREMENTS;

@@ -13,7 +13,7 @@ const LoaderCloSet = createSlice({
   initialState,
   reducers: {
     handleSwitchLoading: (state) => {
-      state.isLoading = !state.isLoading;
+      state.isLoading = true;
     },
   },
 });

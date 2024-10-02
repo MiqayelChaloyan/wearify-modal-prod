@@ -13,7 +13,7 @@ import { colors } from 'themes';
 import { Image } from 'types';
 
 import { Texts } from 'utils/constants';
-import { data } from 'utils/tests/__tests__';
+// import { data } from 'utils/tests/__tests__';
 
 import { Box, Image1, Image2, Loading, Section, Text } from './styles';
 
@@ -22,6 +22,7 @@ import { database, storage } from 'firebaseDatabase';
 import { uploadBytes, ref as sRef } from 'firebase/storage';
 import { getGenaiData } from 'api/genaiApi';
 
+import { ProdIds } from 'utils/helpers/products';
 
 const Step3 = () => {
     const values = useSelector((state: RootState) => state.values);
@@ -31,10 +32,16 @@ const Step3 = () => {
 
     const dispatch = useDispatch();
 
-    const element = document.getElementById('web-modal');
+    // const element = document.getElementById('web-modal');
     // const productId = element?.getAttribute('product-id');
-    const productId = '8752854466795'
-    const foundProduct = data.find(product => product.id === productId);
+    // const productId = '8752854466795'
+
+    // const foundProduct = data.find(product => product.id === productId);
+    const productId = '58';
+    const endpoint = ProdIds.filter(prod => prod.productId === productId)
+
+    const productsData = useSelector((state: RootState) => state.productsData.data);
+    const foundProduct = productsData.find(product => product?.id == endpoint[0]?.id);
 
     const handleSubmit = () => {
         dispatch(handleSwitchStatusPopup());
@@ -79,7 +86,7 @@ const Step3 = () => {
 
 
         set(ref(database, 'new/' + userId), {
-            closetURL: foundProduct?.closeUrl,
+            closetURL: foundProduct?.closet_url,
             status: 'new',
             presetBackground: '033',
             presetModel: presetModelResultId,
@@ -95,14 +102,16 @@ const Step3 = () => {
         fetchData();
     });
 
+    console.log(foundProduct?.image_url, 'foundProduct?.image_url')
 
     return (
         <div>
             <Section>
                 <Box>
                     <Image1
-                        src={foundProduct?.imgPath}
-                        alt={foundProduct?.id}
+                        // src={foundProduct?.image_url!} //762C7T4op8Y4w1cZ7
+                        src='https://drive.google.com/file/d/1ss3bDleyDPMsRK38Dj3ZdAogm7kvMvzb/view?usp=sharing'
+                        alt={foundProduct?.closet_url}
                         loading="lazy"
                     />
                 </Box>
@@ -115,7 +124,6 @@ const Step3 = () => {
                     />
                 </Box>
             </Section>
-
             <Loading>
                 <Text>{Texts.loading}</Text>
                 <Loader duration={25} isActive={isProcessing} />

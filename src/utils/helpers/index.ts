@@ -12,6 +12,23 @@ const loacl = [
 ];
 
 const FEMALE_IMAGES = {
+    SKIN: [
+        {
+            ID: 0,
+            source: 'https://drive.google.com/thumbnail?id=1yLVy9IoZ8D-M_Vpr-2BVAZfHqOs3wtmP',
+            title: '1',
+        },
+        {
+            ID: 1,
+            source: 'https://drive.google.com/thumbnail?id=1NBKHtTB39xDescbPB0lMkR5oUZTzwTXd',
+            title: '2'
+        },
+        {
+            ID: 2,
+            source: 'https://drive.google.com/thumbnail?id=1ABHyH9lBkWdYnAkJVEd4J50d39e7XnEo',
+            title: '3'
+        },
+    ],
     SKIN_TONE: [
         {
             ID: '002',
@@ -99,6 +116,23 @@ const FEMALE_IMAGES = {
 };
 
 const MALE_IMAGES = {
+    SKIN: [
+        {
+            ID: 0,
+            source: 'https://drive.google.com/thumbnail?id=15DLNewNrA1K8F7GhAYkQUudtDZp7gCuB',
+            title: '1'
+        },
+        {
+            ID: 1,
+            source: 'https://drive.google.com/thumbnail?id=1GHd04qAAyaEl4S-NrpSfZE_fEEHf9ksK',
+            title: '2'
+        },
+        {
+            ID: 2,
+            source: 'https://drive.google.com/thumbnail?id=1fjrJQ6Arxop5_BbnebVfH0-PKsOz6YUY',
+            title: '3'
+        },
+    ],
     SKIN_TONE: [
         {
             ID: '006',

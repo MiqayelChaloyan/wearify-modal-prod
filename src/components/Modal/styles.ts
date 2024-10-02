@@ -50,7 +50,7 @@ export const ModalContainer = styled.div`
 export const Button = styled.button<ButtonProps>`
     display: ${({ $isLoad }) => ($isLoad ? 'block' : 'none')};
     position: absolute;
-    z-index: 100;
+    z-index: 100000000;
     border: none;
     background: none;
     padding: 10px;
@@ -93,7 +93,46 @@ export const PopupButton = styled.button<ButtonProps>`
     `}
     ${media.sm`
         bottom: 95px;
-        right: 15px;
+        right: 19px;
+    `}
+`;
+
+export const PopupFitButton = styled.button<ButtonProps>`
+  display: ${({ $isLoad }) => ($isLoad ? 'block' : 'none')};
+  position: absolute;
+    z-index: 10;
+    border: none;
+    background: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 55px;
+    height: 50px;
+    right: 20px;
+    bottom: 252px;
+    background-color: transparent;
+    transition: transform 0.3s ease;
+    &:hover {
+        transform: scale(1.1);
+    }
+    ${media["2xl"]`
+        bottom: 252px;
+    `}
+    ${media.xs`
+        bottom: 252px;
+    `}
+    ${media.xl`
+        bottom: 252px;
+    `}
+    ${media.lg`
+        bottom: 252px;
+    `}
+    ${media.md`
+        bottom: 153px;
+        right: 19px;
+    `}
+    ${media.sm`
+        bottom: 154px;
+        right: 19px;
     `}
 `;
 
@@ -123,7 +162,8 @@ export const Loading = styled.div<LoadingProps>`
     ${media.sm`
         bottom: -100px;
     `}
-`
+`;
+
 export const Text = styled.p`
     font-size: 12px;
     font-weight: var(--font-weight-medium);
@@ -132,3 +172,13 @@ export const Text = styled.p`
     text-align: left;
     margin-bottom: 15px;
 `;
+
+export const HideAllButtons = styled.div`
+    width: 20%;
+    height: 100%;
+    background-color: var(--light-color);
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 200000;
+`

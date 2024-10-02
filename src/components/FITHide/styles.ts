@@ -8,7 +8,7 @@ export const Container = styled.div`
     position: absolute;
     right: 21px;
     top: 20px;
-    cursor: wait;
+    cursor: no-drop;
     padding: 59px 37px;
     border-radius: 32px;
 `;

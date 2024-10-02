@@ -3,7 +3,9 @@ const Titles = {
     skinAgeMetrics: 'Select your skin & age',
     model: 'BE YOUR OWN MODEL',
     generatedModel: 'GENERATED MODEL',
-    deleteConfirmation: 'Delete Confirmation'
+    deleteConfirmation: 'Delete Confirmation',
+    inputSize: 'INPUT YOUR SIZE',
+    skin: 'SELECT SKIN'
 }
 
 const Subtitles = {
