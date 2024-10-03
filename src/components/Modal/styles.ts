@@ -197,3 +197,44 @@ export const Overlay = styled.div`
     z-index: 100000;
     opacity: 0.75;
 `;
+
+export const BackButton = styled.button`
+    display: block;
+    position: absolute;
+    z-index: 10;
+    border: none;
+    background: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 100px;
+    height: 50px;
+    right: 20px;
+    top: 20px;
+    background-color: var(--dark-blue);
+    color: var(--white);
+    font-size: 16px;
+    transition: transform 0.3s ease;
+    &:hover {
+        background-color: var(--blue);
+    }
+    ${media["2xl"]`
+        top: 20px;
+    `}
+    ${media.xs`
+        top: 20px;
+    `}
+    ${media.xl`
+        top: 20px;
+    `}
+    ${media.lg`
+        top: 20px;
+    `}
+    ${media.md`
+        top: 19px;
+        right: 19px;
+    `}
+    ${media.sm`
+        top: 19px;
+        right: 19px;
+    `}
+`;

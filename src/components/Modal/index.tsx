@@ -19,10 +19,9 @@ import { Texts } from 'utils/constants';
 
 import { colors } from 'themes';
 
-import { Button, Text, Loading, ModalContainer, PopupButton, PopupFitButton, HideAllButtons, Overlay, Container } from './styles';
+import { Button, Text, Loading, ModalContainer, PopupButton, PopupFitButton, HideAllButtons, Overlay, Container, BackButton } from './styles';
 import { handleSwitchStatusPopupFit } from 'store/redux/features/popupFitState';
-import Navigation from 'components/Popup/navigation';
-import NavigationFit from 'components/PopupFit/navigation';
+import { ADD_CLOSET_URL } from 'store/redux/features/valuesState';
 
 
 type Props = {
@@ -66,43 +65,42 @@ const Modal = ({ children }: Readonly<Props>) => {
         return () => clearTimeout(timer);
     }, []);
 
+    const _handleBack = () => {
+        dispatch(ADD_CLOSET_URL(''));
+    }
 
-    // let load = isLoading || closetUrl.trim().length > 0;
 
     return (
-
         <Container id='web-modal'>
             <Overlay>
                 <div />
             </Overlay>
-
-   
             <ModalContainer id='modal'>
                 <Button $isLoad={isLoading} onClick={handleClose}>
                     <IoClose size={30} color={colors.gray} />
                 </Button>
                 {children}
-                <PopupFitButton disabled={!!isStageTwoProcessing} $isLoad={isLoading} onClick={_handleChangePopupFit}>
+                <PopupFitButton $isLoad={isLoading} onClick={_handleChangePopupFit}>
                     <FitIcon fill={'rgb(235, 235, 237)'} />
                 </PopupFitButton>
-                <PopupButton disabled={!closetUrl && !!isStageTwoProcessing} $isLoad={isLoading} onClick={_handleChangePopup}>
-                    <PeopleIcon fill={'rgb(235, 235, 237)'} />
+                <PopupButton disabled={!!isStageTwoProcessing} $isLoad={isLoading} onClick={_handleChangePopup}>
+                    <PeopleIcon fill={!!isStageTwoProcessing ? 'red' : 'rgb(235, 235, 237)'} />
                 </PopupButton>
                 <FITHide />
-                {/* {closetUrl?.trim() && (
-                <>
-                    <HideAllButtons>
-                        <div />
-                    </HideAllButtons>
-                </>
-            )} */}
+                {closetUrl?.trim() && (
+                    <>
+                        <HideAllButtons>
+                            <BackButton onClick={_handleBack}>Back</BackButton>
+                            <div />
+                        </HideAllButtons>
+                    </>
+                )}
                 {isStageTwoProcessing && (
                     <>
                         <FITHide />
                         <GroupHide />
                     </>
                 )}
-
                 <Loading $isactive={isStageTwoProcessing}>
                     <Text>{Texts.largeLoading}</Text>
                     <Loader duration={60} isActive={isStageTwoProcessing} />

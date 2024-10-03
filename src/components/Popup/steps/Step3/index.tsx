@@ -34,12 +34,9 @@ const Step3 = () => {
 
     // const element = document.getElementById('web-modal');
     // const productShopifyId = element?.getAttribute('product-id');
-    const storedProductShopifyId = localStorage.getItem('productShopifyId');
+    // const storedProductShopifyId = localStorage.getItem('productShopifyId');
+    const storedProductShopifyId = '8758655516907'
 
-    // const productId = '8752854466795'
-
-    // const foundProduct = data.find(product => product.id === productId);
-    // const productId = '58';
     const endpoint = ProdIds.filter(prod => prod.productId === storedProductShopifyId)
 
     const productsData = useSelector((state: RootState) => state.productsData.data);
@@ -67,9 +64,7 @@ const Step3 = () => {
 
         try {
             // TODO
-            // Problem to clo-set url has benn this row
             const response = await fetch(imageSource);
-            // const response = await fetch('https://style.clo-set.com/fitting/VHFF%2FhHOfsJJDtlwD7hvZg%3D%3D?ui_colorway=0&ui_size=0&ui_capture=0&ui_shopping_bag=0&ui_like=0&ui_logo=none');
 
             const blob = await response.blob();
             const newFile = new File([blob], 'example.png', { type: blob.type });
@@ -96,23 +91,22 @@ const Step3 = () => {
     };
 
 
-    useEffect(() => {
-        const fetchData = async () => {
-            await _handleSet();
-        };
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         await _handleSet();
+    //     };
 
-        fetchData();
-    });
+    //     fetchData();
+    // });
 
-    console.log(foundProduct?.image_url, 'foundProduct?.image_url')
+    console.log(endpoint[0]?.product_img)
 
     return (
         <div>
             <Section>
                 <Box>
                     <Image1
-                        // src={foundProduct?.image_url!} //762C7T4op8Y4w1cZ7
-                        src='https://drive.google.com/file/d/1ss3bDleyDPMsRK38Dj3ZdAogm7kvMvzb/view?usp=sharing'
+                        src={endpoint[0]?.product_img}
                         alt={foundProduct?.closet_url}
                         loading="lazy"
                     />

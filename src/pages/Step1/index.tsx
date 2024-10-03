@@ -24,7 +24,7 @@ const Step1 = () => {
     // const element = document.getElementById('web-modal');
     // const productShopifyId = element?.getAttribute('product-id');
     // const storedProductShopifyId = localStorage.getItem('productShopifyId');
-    const storedProductShopifyId =  '8752854466795' //'4'; //8758648996075
+    const storedProductShopifyId =  '8758655516907' //'4'; //8758648996075
 
 
     // const productId = '8752854466795';

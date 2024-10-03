@@ -5,6 +5,7 @@ import RangeSlider from 'components/RangeSlider';
 import { useDispatch, useSelector } from 'react-redux';
 import { UPDATE_DATA } from 'store/redux/features/valuesState';
 import { RootState } from 'store/redux';
+import { HEIGHT, WEIGHT } from 'utils/helpers/sizes';
 
 
 const SliderContainer: React.FC = () => {
@@ -19,7 +20,7 @@ const SliderContainer: React.FC = () => {
     }, [height]);
 
     const calculateWeight = (height: number) => {
-        return Math.round((height - 162) * 0.5 + 50);
+        return Math.round((height - HEIGHT.min) * 0.5 + WEIGHT.min);
     };
 
     const _handlechangeHeight = (value: number) => {
@@ -31,19 +32,20 @@ const SliderContainer: React.FC = () => {
         dispatch(UPDATE_DATA({ weight: value }));
     };
 
+
     return (
         <div>
             <RangeSlider
-                min={162}
-                max={192}
+                min={HEIGHT.min}
+                max={HEIGHT.max}
                 initialValue={height}
                 title="HEIGHT"
                 value={height}
                 onChange={(value) => _handlechangeHeight(value)}
             />
             <RangeSlider
-                min={50}
-                max={96}
+                min={WEIGHT.min}
+                max={WEIGHT.max}
                 initialValue={weight}
                 title="WEIGHT"
                 value={weight}

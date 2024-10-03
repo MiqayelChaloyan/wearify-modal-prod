@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ADD_CLOSET_URL, INITIALIZE_STATE } from 'store/redux/features/valuesState';
 import { INITIALIZE_STATE_PROCESSING } from 'store/redux/features/stagesState';
+import { handleSwitchStatusPopupFit } from 'store/redux/features/popupFitState';
+import { RootState } from 'store/redux';
 
 import { useMultistepForm } from 'hooks/useMultistepForm';
 
@@ -10,9 +12,8 @@ import Step1 from './steps/Step1';
 import Step2 from './steps/Step2';
 
 import Popup from './index';
-import { handleSwitchStatusPopupFit } from 'store/redux/features/popupFitState';
+
 import { QUERY } from 'utils/constants/endpoints';
-import { RootState } from 'store/redux';
 
 
 const NavigationFit: React.FC = () => {
@@ -27,7 +28,6 @@ const NavigationFit: React.FC = () => {
             <Step2 />,
         ]);
 
-        console.log(height, weight)
     const _handleNext = () => {
         if (currentStepIndex < 1) {
             return next();
@@ -36,8 +36,7 @@ const NavigationFit: React.FC = () => {
         if (currentStepIndex === 1) {
             const closet_url = product?.closet_url.split('?')[0];
 
-            let url = `${closet_url}?&avatar_info=${isFemale}_3e35445aaa7d49a6acc00087ef6c22bd_${height}_${weight}_${0}${QUERY}`;
-console.log(url);
+            let url = `${closet_url}?&avatar_info=${isFemale}_${skin?.ID}_${height}_${weight}_${0}${QUERY}`;
 
             dispatch(ADD_CLOSET_URL(url));
             dispatch(handleSwitchStatusPopupFit());

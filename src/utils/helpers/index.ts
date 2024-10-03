@@ -14,19 +14,19 @@ const loacl = [
 const FEMALE_IMAGES = {
     SKIN: [
         {
-            ID: 0,
+            ID: '27394e6a3aa14558910bd41b0a5f9751',
             source: 'https://drive.google.com/thumbnail?id=1yLVy9IoZ8D-M_Vpr-2BVAZfHqOs3wtmP',
-            title: '1',
+            title: 'Medium',
         },
         {
-            ID: 1,
+            ID: 'a060299720004ce6ab61a472b581fac3',
             source: 'https://drive.google.com/thumbnail?id=1NBKHtTB39xDescbPB0lMkR5oUZTzwTXd',
-            title: '2'
+            title: 'Black'
         },
         {
-            ID: 2,
+            ID: 'd77b4318e8ed4a5d90f0970fe6a8965f',
             source: 'https://drive.google.com/thumbnail?id=1ABHyH9lBkWdYnAkJVEd4J50d39e7XnEo',
-            title: '3'
+            title: 'White'
         },
     ],
     SKIN_TONE: [
@@ -118,19 +118,19 @@ const FEMALE_IMAGES = {
 const MALE_IMAGES = {
     SKIN: [
         {
-            ID: 0,
+            ID: '546a68e36ac1443bb8e0cc615fb72dbd',
             source: 'https://drive.google.com/thumbnail?id=15DLNewNrA1K8F7GhAYkQUudtDZp7gCuB',
-            title: '1'
+            title: 'Medium'
         },
         {
-            ID: 1,
+            ID: '219b2a0f262643438460e19171a6f506',
             source: 'https://drive.google.com/thumbnail?id=1GHd04qAAyaEl4S-NrpSfZE_fEEHf9ksK',
-            title: '2'
+            title: 'Black'
         },
         {
-            ID: 2,
+            ID: '3e35445aaa7d49a6acc00087ef6c22bd',
             source: 'https://drive.google.com/thumbnail?id=1fjrJQ6Arxop5_BbnebVfH0-PKsOz6YUY',
-            title: '3'
+            title: 'White'
         },
     ],
     SKIN_TONE: [

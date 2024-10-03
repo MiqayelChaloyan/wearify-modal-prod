@@ -21,7 +21,7 @@ export type Product = {
 };
 
 export type Skin = {
-    ID: number;
+    ID: string;
     source: string;
     title: string;
 };

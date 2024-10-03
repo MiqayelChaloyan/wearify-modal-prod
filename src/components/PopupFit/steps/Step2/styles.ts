@@ -13,8 +13,8 @@ export const Div = styled.div`
 
 export const Button = styled.button<ButtonProps>`
     background-color: none;
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     cursor: pointer;
     transition: var(--transition);
     margin: 2px; 
@@ -31,7 +31,7 @@ export const Box = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 5px auto;
+    margin: 50px auto;
 `;
 
 export const Subtitle = styled.h2`
