@@ -19,7 +19,8 @@ const Texts = {
     reference: 'Reference model image',
     loading: 'Your task is in the queue...',
     deleteImage: 'Are you sure you want delete the image ?',
-    largeLoading: 'Creating model images, it’s expected to take 2 minutes.'
+    largeLoading: 'Creating model images, it’s expected to take 2 minutes.',
+    yourSizes: 'Select your sizes'
 }
 
 const Buttons = {

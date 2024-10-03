@@ -27,7 +27,7 @@ import { ProdIds } from 'utils/helpers/products';
 const Step3 = ({ goTo }: any) => {
     const values = useSelector((state: RootState) => state.values);
     const { isProcessing } = useSelector((state: RootState) => state.stages);
-    const { uploadImage, defaultImage, isFemale, age, skinTone } = useSelector((state: RootState) => state.values);
+    const { uploadImage, defaultImage, isFemale, age, skinTone, closetUrlAPI } = useSelector((state: RootState) => state.values);
     const imageSource: string | null | any = uploadImage?.source || defaultImage?.source;
     const product = useSelector((state: RootState) => state.productsData.product);
 
@@ -37,7 +37,7 @@ const Step3 = ({ goTo }: any) => {
     // const element = document.getElementById('web-modal');
     // const productShopifyId = element?.getAttribute('product-id');
     // const storedProductShopifyId = localStorage.getItem('productShopifyId');
-    const storedProductShopifyId = '7866351386807'
+    const storedProductShopifyId = '8758648307947'
 
     const endpoint = ProdIds.filter(prod => prod.productId === storedProductShopifyId)
 
@@ -86,8 +86,11 @@ console.log(values, 'foundProduct?.closet_url')
         }).catch(err => console.log(err));
 
 
+        console.log(product?.screenshot_url, 'product?.screenshot_url');
+        
         set(ref(database, 'new/' + userId), {
-            closetURL: values?.closetUrlAPI,
+            // closetURL: closetUrlAPI,
+            closetURL: product?.screenshot_url ,
             status: 'new',
             presetBackground: '033',
             presetModel: presetModelResultId,

@@ -8,7 +8,7 @@ export const IframeWrapper = styled.div`
   left: 0;
   bottom: 4px;
   overflow: hidden;
-  z-index: 200000;
+  z-index: 20000000;
   box-sizing: border-box;
 
   /* Responsive adjustments */
@@ -22,7 +22,7 @@ export const IframeWrapper = styled.div`
 
   @media (max-width: 1200px) and (min-width: 1024px) {
     bottom: 4px;
-    height: 420px;
+    height: 460px;
   }
 
   @media (max-width: 1024px) and (min-width: 850px) {

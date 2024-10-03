@@ -10,7 +10,7 @@ const Step1 = () => {
 
     return (
         <Box>
-            <H3>{Texts.reference}</H3>
+            <H3>{Texts.yourSizes}</H3>
             <SliderContainer />
         </Box>
     )

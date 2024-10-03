@@ -103,7 +103,7 @@ const ProdIds = [
         id: null,
         is_flag: false,
         is_depar: true,
-        depar_link: 'https://nazeli-terpetrosyan.github.io/azat_mard'
+        depar_link: 'https://wearifyai.github.io/ARTryOn/?effect=SOMABlue&camera=front'
     },
     {
         productId: '7866348929207',
@@ -111,7 +111,7 @@ const ProdIds = [
         id: null,
         is_flag: false,
         is_depar: true,
-        depar_link: 'https://nazeli-terpetrosyan.github.io/azat_mard'
+        depar_link: 'https://wearifyai.github.io/ARTryOn/?effect=SOMARose&camera=front'
     },
 ];
 

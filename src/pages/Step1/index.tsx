@@ -24,11 +24,12 @@ const Step1 = () => {
 
     const element = document.getElementById('web-modal');
     const productShopifyId = element?.getAttribute('product-id');
-    // const storedProductShopifyId = localStorage.getItem('productShopifyId');
-    const storedProductShopifyId = '8758648537323'
+    const storedProductShopifyId = localStorage.getItem('productShopifyId');
+    // const storedProductShopifyId = '7872547586231'
 
     const endpoint = ProdIds.filter(prod => prod.productId === storedProductShopifyId);
     const productsData = useSelector((state: RootState) => state.productsData.data);
+console.log(productsData);
 
     const foundProduct = productsData.find(product => product?.id == endpoint[0]?.id);
     const { closetUrl } = useSelector((state: RootState) => state.values);

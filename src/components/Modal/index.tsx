@@ -19,7 +19,7 @@ import { Texts } from 'utils/constants';
 
 import { colors } from 'themes';
 
-import { Button, Text, Loading, ModalContainer, PopupButton, PopupFitButton, HideAllButtons, Overlay, Container, BackButton, DepArContainer, ModalContainerDepAr, ButtonDeepAr } from './styles';
+import { Button, Text, Loading, ModalContainer, PopupButton, PopupFitButton, HideAllButtons, Overlay, Container, BackButton, DepArContainer, ModalContainerDepAr } from './styles';
 import { handleSwitchStatusPopupFit } from 'store/redux/features/popupFitState';
 import { ADD_CLOSET_URL, INITIALIZE_LINK } from 'store/redux/features/valuesState';
 import ToggleSwitch from 'components/ToggleSwitch';
@@ -36,7 +36,9 @@ const Modal = ({ children }: Readonly<Props>) => {
     const { isStageTwoProcessing } = useSelector((state: RootState) => state.stages);
     const { closetUrl } = useSelector((state: RootState) => state.values);
     const product = useSelector((state: RootState) => state.productsData.product);
-    const endpoint = ProdIds.filter(prod => prod.id === product?.id);
+   
+    const storedProductShopifyId = localStorage.getItem('productShopifyId');
+    const endpoint = ProdIds.filter(prod => prod.id === product?.id || prod.productId === storedProductShopifyId);
 
     const dispatch = useDispatch();
 
@@ -74,15 +76,15 @@ const Modal = ({ children }: Readonly<Props>) => {
         dispatch(INITIALIZE_LINK(''));
     }
 
-    console.log(product)
+    console.log(endpoint[0])
     return (
         <>
             {endpoint[0]?.is_depar ? (
                 <DepArContainer id='web-modal'>
                     <ModalContainerDepAr id='modal'>
-                        <Button $isLoad={false} onClick={handleClose}>
+                        {/* <ButtonDeepAr onClick={handleClose}>
                             <IoClose size={30} color={colors.gray} />
-                        </Button>
+                        </ButtonDeepAr> */}
                         {children}
                     </ModalContainerDepAr>
                 </DepArContainer>
@@ -121,7 +123,7 @@ const Modal = ({ children }: Readonly<Props>) => {
                                         <GroupHide />
                                     </>
                                 )}
-                                <ToggleSwitch isLoad={isLoading} />
+                                {/* <ToggleSwitch isLoad={isLoading} /> */}
                             </>
                         )}
 

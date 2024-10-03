@@ -4,6 +4,7 @@ import { CloseButton, IframeWrapper, StyledIframe } from './styles';
 import { useSelector } from 'react-redux';
 import { RootState } from 'store/redux';
 import { ProdIds } from 'utils/helpers/products';
+import IframeLoad from 'components/IframeLoad';
 
 function IFrame({ src, onClose }: any) {
     const [loaded, setLoaded] = useState(false);
@@ -16,8 +17,7 @@ function IFrame({ src, onClose }: any) {
         <>
             {!loaded && (
                 <div className="loader">
-                    {/* <IframeLoad /> */}
-                    load
+                    <IframeLoad />
                 </div>
             )}
             <StyledIframe
@@ -41,21 +41,12 @@ function IFrame({ src, onClose }: any) {
 // The IframeContainer component
 const IframeContainer = () => {
     const [isVisible, setIsVisible] = useState(false);
-    const element = document.getElementById('web-modal');
-    const productShopifyId = element?.getAttribute('product-id');
-    // const storedProductShopifyId = localStorage.getItem('productShopifyId');
-    const storedProductShopifyId = '7866351386807'
-    const product = useSelector((state: RootState) => state.productsData.product);
+    // const element = document.getElementById('web-modal');
+    // const productShopifyId = element?.getAttribute('product-id');
+    const storedProductShopifyId = localStorage.getItem('productShopifyId');
+    // const storedProductShopifyId = '7866350043319'
+    // const product = useSelector((state: RootState) => state.productsData.product);
     const endpoint = ProdIds.filter(prod => prod.productId === storedProductShopifyId);
-
-console.log(product)
-    //   const handleOpen = () => {
-    //     const button = document.getElementById('wearify-button');
-    //     if (button) {
-    //       button.style.display = 'none';
-    //     }
-    //     setIsVisible(true);
-    //   };
 
     const handleClose = () => {
         const bg = document.getElementById('web-modal');
@@ -70,19 +61,26 @@ console.log(product)
         setIsVisible(false);
     };
 
-    //   useEffect(() => {
-    //     const button = document.getElementById('wearify-button');
-    //     if (button) {
-    //       button.addEventListener('click', handleOpen);
-    //     }
+    const handleOpen = () => {
+        // const button = document.getElementById('wearify-button');
+        // if (button) {
+        //     button.style.display = 'none';
+        // }
+        setIsVisible(true);
+    };
 
-    //     return () => {
-    //       if (button) {
-    //         button.removeEventListener('click', handleOpen);
-    //       }
-    //     };
-    //   }, []);
+    useEffect(() => {
+        const button = document.getElementById('wearify-button');
+        if (button) {
+            button.addEventListener('click', handleOpen);
+        }
 
+        return () => {
+            if (button) {
+                button.removeEventListener('click', handleOpen);
+            }
+        };
+    }, []);
 
     return (
         <div>

@@ -68,16 +68,16 @@ export const Button = styled.button<ButtonProps>`
 `;
 
 
-export const ButtonDeepAr = styled.button`
-    position: absolute;
-    z-index: 1000;
-    border: none;
-    background: none;
-    padding: 10px;
-    cursor: pointer;
-    width: 20px;
-    height: 20px;
-`;
+// export const ButtonDeepAr = styled.button`
+//     position: absolute;
+//     z-index: 1000;
+//     border: none;
+//     background: none;
+//     padding: 10px;
+//     cursor: pointer;
+//     width: 20px;
+//     height: 20px;
+// `;
 
 export const PopupButton = styled.button<ButtonProps>`
   display: ${({ $isLoad }) => ($isLoad ? 'block' : 'none')};
@@ -90,20 +90,20 @@ export const PopupButton = styled.button<ButtonProps>`
     width: 55px;
     height: 50px;
     right: 20px;
-    bottom: 195px;
+    bottom: 196px;
     background-color: transparent;
     transition: transform 0.3s ease;
     &:hover {
         transform: scale(1.1);
     }
     ${media["2xl"]`
-        bottom: 195px;
+        bottom: 196px;
     `}
     ${media.xs`
-        bottom: 195px;
+        bottom: 196px;
     `}
     ${media.xl`
-        bottom: 195px;
+        bottom: 196px;
     `}
     ${media.lg`
         bottom: 95px;
@@ -257,35 +257,38 @@ export const BackButton = styled.button`
 
 export const ModalContainerDepAr = styled.div`
     display: none;
-    width: 636px;
+    width: 500px;
     height: 500px;
     position: fixed;
-    // z-index: 100000;
-    left: 40%;
-    top: 50%;
+    z-index: 100000;
+    left: 33.6%;
+    top: 42.2%;
+    background-color: var(--dark-blue);
     transform: translate(-50%, -50%);
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-    background-color: #ededed;
     ${media["2xl"]`
         height: 500px;
-        width: 636px;
+        width: 500px;
+        left: 27.6%;
+        top: 42.2%;
     `}
     ${media.xs`
         height: 500px;
-        width: 636px;
+        width: 500px;
         border-radius: 30px;
     `}
     ${media.xl`
         height: 500px;
-        width: 636px;
+        width: 500px;
+        left: 26%;
+        top: 37%;
     `}
     ${media.lg`
         height: 400px;
-        width: 555px;
+        width: 500px;
     `}
     ${media.md`
         height: 400px;
-        width: 555px;
+        width: 500px;
     `}
     ${media.sm`
         height: 400px;
