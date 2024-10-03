@@ -11,6 +11,7 @@ const MEASUREMENTS = {
     weight: 50,
     skin: null,
     closetUrl: '',
+    plan: 1,
 };
 
 export const getDefaultValues = (isFemale) => {

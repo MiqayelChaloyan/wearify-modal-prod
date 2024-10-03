@@ -22,6 +22,7 @@ import { colors } from 'themes';
 import { Button, Text, Loading, ModalContainer, PopupButton, PopupFitButton, HideAllButtons, Overlay, Container, BackButton } from './styles';
 import { handleSwitchStatusPopupFit } from 'store/redux/features/popupFitState';
 import { ADD_CLOSET_URL } from 'store/redux/features/valuesState';
+import ToggleSwitch from 'components/ToggleSwitch';
 
 
 type Props = {
@@ -80,8 +81,8 @@ const Modal = ({ children }: Readonly<Props>) => {
                     <IoClose size={30} color={colors.gray} />
                 </Button>
                 {children}
-                <PopupFitButton $isLoad={isLoading} onClick={_handleChangePopupFit}>
-                    <FitIcon fill={'rgb(235, 235, 237)'} />
+                <PopupFitButton disabled={!!isStageTwoProcessing} $isLoad={isLoading} onClick={_handleChangePopupFit}>
+                    <FitIcon fill={!!isStageTwoProcessing ? 'red' : 'rgb(235, 235, 237)'}  />
                 </PopupFitButton>
                 <PopupButton disabled={!!isStageTwoProcessing} $isLoad={isLoading} onClick={_handleChangePopup}>
                     <PeopleIcon fill={!!isStageTwoProcessing ? 'red' : 'rgb(235, 235, 237)'} />
@@ -101,6 +102,7 @@ const Modal = ({ children }: Readonly<Props>) => {
                         <GroupHide />
                     </>
                 )}
+                <ToggleSwitch isLoad={isLoading} />
                 <Loading $isactive={isStageTwoProcessing}>
                     <Text>{Texts.largeLoading}</Text>
                     <Loader duration={60} isActive={isStageTwoProcessing} />

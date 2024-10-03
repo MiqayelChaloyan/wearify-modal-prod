@@ -102,8 +102,8 @@ export const PopupButton = styled.button<ButtonProps>`
 `;
 
 export const PopupFitButton = styled.button<ButtonProps>`
-  display: ${({ $isLoad }) => ($isLoad ? 'block' : 'none')};
-  position: absolute;
+    display: ${({ $isLoad }) => ($isLoad ? 'block' : 'none')};
+    position: absolute;
     z-index: 10;
     border: none;
     background: none;

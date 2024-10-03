@@ -17,6 +17,7 @@ interface MeasurementsState {
     weight: number;
     skin: Skin | null;
     closetUrl?: string;
+    plan?: number;
 };
 
 const initialState: MeasurementsState = { ...MEASUREMENTS };
