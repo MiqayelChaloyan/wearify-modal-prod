@@ -9,7 +9,7 @@ import { Box } from './styles';
 
 
 interface ModelViewerProps {
-    glbSrc: string;
+    glbSrc?: any;
 }
 
 const ModelViewer: React.FC<ModelViewerProps> = ({ glbSrc }) => {

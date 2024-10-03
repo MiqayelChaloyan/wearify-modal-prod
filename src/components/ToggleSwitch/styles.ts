@@ -6,14 +6,14 @@ type LoadingProps = {
 
 export const Container = styled.div<LoadingProps>`
   display: ${({ $isLoad }) => ($isLoad ? 'block' : 'none')};
-  width: 8rem;
+  // width: 8rem;
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  top: 155px;
+  right: 19px;
 `;
 
 export const SwitchesContainer = styled.div`
-  width: 4rem;
+  width: 3.5rem;
   position: relative;
   display: flex;
   background: rgba(0, 0, 0, 0.5);

@@ -19,10 +19,12 @@ import { Texts } from 'utils/constants';
 
 import { colors } from 'themes';
 
-import { Button, Text, Loading, ModalContainer, PopupButton, PopupFitButton, HideAllButtons, Overlay, Container, BackButton } from './styles';
+import { Button, Text, Loading, ModalContainer, PopupButton, PopupFitButton, HideAllButtons, Overlay, Container, BackButton, DepArContainer, ModalContainerDepAr, ButtonDeepAr } from './styles';
 import { handleSwitchStatusPopupFit } from 'store/redux/features/popupFitState';
-import { ADD_CLOSET_URL } from 'store/redux/features/valuesState';
+import { ADD_CLOSET_URL, INITIALIZE_LINK } from 'store/redux/features/valuesState';
 import ToggleSwitch from 'components/ToggleSwitch';
+import { ProdIds } from 'utils/helpers/products';
+import IframeContainer from 'components/DeepAr';
 
 
 type Props = {
@@ -33,6 +35,8 @@ const Modal = ({ children }: Readonly<Props>) => {
     const { isLoading } = useSelector((state: RootState) => state.loaderCloSet);
     const { isStageTwoProcessing } = useSelector((state: RootState) => state.stages);
     const { closetUrl } = useSelector((state: RootState) => state.values);
+    const product = useSelector((state: RootState) => state.productsData.product);
+    const endpoint = ProdIds.filter(prod => prod.id === product?.id);
 
     const dispatch = useDispatch();
 
@@ -67,48 +71,69 @@ const Modal = ({ children }: Readonly<Props>) => {
     }, []);
 
     const _handleBack = () => {
-        dispatch(ADD_CLOSET_URL(''));
+        dispatch(INITIALIZE_LINK(''));
     }
 
-
+    console.log(product)
     return (
-        <Container id='web-modal'>
-            <Overlay>
-                <div />
-            </Overlay>
-            <ModalContainer id='modal'>
-                <Button $isLoad={isLoading} onClick={handleClose}>
-                    <IoClose size={30} color={colors.gray} />
-                </Button>
-                {children}
-                <PopupFitButton disabled={!!isStageTwoProcessing} $isLoad={isLoading} onClick={_handleChangePopupFit}>
-                    <FitIcon fill={!!isStageTwoProcessing ? 'red' : 'rgb(235, 235, 237)'}  />
-                </PopupFitButton>
-                <PopupButton disabled={!!isStageTwoProcessing} $isLoad={isLoading} onClick={_handleChangePopup}>
-                    <PeopleIcon fill={!!isStageTwoProcessing ? 'red' : 'rgb(235, 235, 237)'} />
-                </PopupButton>
-                <FITHide />
-                {closetUrl?.trim() && (
-                    <>
-                        <HideAllButtons>
-                            <BackButton onClick={_handleBack}>Back</BackButton>
-                            <div />
-                        </HideAllButtons>
-                    </>
-                )}
-                {isStageTwoProcessing && (
-                    <>
-                        <FITHide />
-                        <GroupHide />
-                    </>
-                )}
-                <ToggleSwitch isLoad={isLoading} />
-                <Loading $isactive={isStageTwoProcessing}>
-                    <Text>{Texts.largeLoading}</Text>
-                    <Loader duration={60} isActive={isStageTwoProcessing} />
-                </Loading>
-            </ModalContainer>
-        </Container>
+        <>
+            {endpoint[0]?.is_depar ? (
+                <DepArContainer id='web-modal'>
+                    <ModalContainerDepAr id='modal'>
+                        <Button $isLoad={false} onClick={handleClose}>
+                            <IoClose size={30} color={colors.gray} />
+                        </Button>
+                        {children}
+                    </ModalContainerDepAr>
+                </DepArContainer>
+            ) : (
+                <Container id='web-modal'>
+                    <Overlay>
+                        <div />
+                    </Overlay>
+                    <ModalContainer id='modal'>
+                        <Button $isLoad={isLoading} onClick={handleClose}>
+                            <IoClose size={30} color={colors.gray} />
+                        </Button>
+
+                        {children}
+
+                        {endpoint[0]?.is_flag && (
+                            <>
+                                <PopupFitButton disabled={!!isStageTwoProcessing} $isLoad={isLoading} onClick={_handleChangePopupFit}>
+                                    <FitIcon fill={!!isStageTwoProcessing ? 'red' : 'rgb(235, 235, 237)'} />
+                                </PopupFitButton>
+                                <PopupButton disabled={!!isStageTwoProcessing} $isLoad={isLoading} onClick={_handleChangePopup}>
+                                    <PeopleIcon fill={!!isStageTwoProcessing ? 'red' : 'rgb(235, 235, 237)'} />
+                                </PopupButton>
+                                <FITHide />
+                                {closetUrl?.trim() && (
+                                    <>
+                                        <HideAllButtons>
+                                            <BackButton onClick={_handleBack}>Back</BackButton>
+                                            <div />
+                                        </HideAllButtons>
+                                    </>
+                                )}
+                                {isStageTwoProcessing && (
+                                    <>
+                                        <FITHide />
+                                        <GroupHide />
+                                    </>
+                                )}
+                                <ToggleSwitch isLoad={isLoading} />
+                            </>
+                        )}
+
+                        <Loading $isactive={isStageTwoProcessing}>
+                            <Text>{Texts.largeLoading}</Text>
+                            <Loader duration={60} isActive={isStageTwoProcessing} />
+                        </Loading>
+                    </ModalContainer>
+                </Container>
+            )
+            }
+        </>
     )
 };
 

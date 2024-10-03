@@ -17,6 +17,7 @@ interface MeasurementsState {
     weight: number;
     skin: Skin | null;
     closetUrl?: string;
+    closetUrlAPI?: string;
     plan?: number;
 };
 
@@ -49,10 +50,14 @@ const measurementsSlice = createSlice({
         },
         ADD_CLOSET_URL: (state, action: PayloadAction<string>) => {
             state.closetUrl = action.payload
+            state.closetUrlAPI = action.payload
+        },
+        INITIALIZE_LINK: (state, action: PayloadAction<string>) => {
+            state.closetUrl = action.payload
         }
     },
 });
 
 
-export const { UPDATE_DATA, ADD_IMAGE, DELETE_IMAGE, UPDATE_DEFAULT_IMAGE, INITIALIZE_STATE, ADD_CLOSET_URL } = measurementsSlice.actions;
+export const { UPDATE_DATA, ADD_IMAGE, DELETE_IMAGE, UPDATE_DEFAULT_IMAGE, INITIALIZE_STATE, ADD_CLOSET_URL, INITIALIZE_LINK } = measurementsSlice.actions;
 export default measurementsSlice.reducer;

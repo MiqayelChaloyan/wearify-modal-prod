@@ -15,25 +15,22 @@ import ModelViewer from 'components/ModelViewer';
 
 import { DriverCap, Pregomesh_bows } from 'utils/tests/__models__/__index__';
 import ModelViewerContainer from 'components/ModelViewerContainer';
+import IframeContainer from 'components/DeepAr';
 
 
 
 const Step1 = () => {
     const [url, setUrl] = useState<string | undefined>(undefined);
 
-    // const element = document.getElementById('web-modal');
-    // const productShopifyId = element?.getAttribute('product-id');
+    const element = document.getElementById('web-modal');
+    const productShopifyId = element?.getAttribute('product-id');
     // const storedProductShopifyId = localStorage.getItem('productShopifyId');
-    const storedProductShopifyId =  '8758655516907' //'4'; //8758648996075
+    const storedProductShopifyId = '8758648537323'
 
-
-    // const productId = '8752854466795';
-    const endpoint = ProdIds.filter(prod => prod.productId === storedProductShopifyId)
+    const endpoint = ProdIds.filter(prod => prod.productId === storedProductShopifyId);
     const productsData = useSelector((state: RootState) => state.productsData.data);
-    console.log(productsData, 'productsData')
 
     const foundProduct = productsData.find(product => product?.id == endpoint[0]?.id);
-
     const { closetUrl } = useSelector((state: RootState) => state.values);
     const dispatch = useDispatch();
 
@@ -54,7 +51,6 @@ const Step1 = () => {
         }
     }, [foundProduct, closetUrl])
 
-
     return (
         <>
             {endpoint[0].is_flag ? (
@@ -62,7 +58,10 @@ const Step1 = () => {
                     <IframeWrapper src={url} />
                     <Navigation />
                     <NavigationFit />
-                </>) : (
+                </>
+            ) : endpoint[0].is_depar ? (
+                <IframeContainer />
+            ) : (
                 <ModelViewerContainer />
             )}
         </>

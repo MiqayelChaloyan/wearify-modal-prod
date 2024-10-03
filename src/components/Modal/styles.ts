@@ -9,6 +9,10 @@ type LoadingProps = {
     $isactive: boolean;
 };
 
+export const DepArContainer = styled.div`
+    display: none;
+`;
+
 export const Container = styled.div`
     display: none;
 `;
@@ -53,6 +57,18 @@ export const ModalContainer = styled.div`
 
 export const Button = styled.button<ButtonProps>`
     display: ${({ $isLoad }) => ($isLoad ? 'block' : 'none')};
+    position: absolute;
+    z-index: 1000;
+    border: none;
+    background: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+`;
+
+
+export const ButtonDeepAr = styled.button`
     position: absolute;
     z-index: 1000;
     border: none;
@@ -236,5 +252,43 @@ export const BackButton = styled.button`
     ${media.sm`
         top: 19px;
         right: 19px;
+    `}
+`;
+
+export const ModalContainerDepAr = styled.div`
+    display: none;
+    width: 636px;
+    height: 500px;
+    position: fixed;
+    // z-index: 100000;
+    left: 40%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    background-color: #ededed;
+    ${media["2xl"]`
+        height: 500px;
+        width: 636px;
+    `}
+    ${media.xs`
+        height: 500px;
+        width: 636px;
+        border-radius: 30px;
+    `}
+    ${media.xl`
+        height: 500px;
+        width: 636px;
+    `}
+    ${media.lg`
+        height: 400px;
+        width: 555px;
+    `}
+    ${media.md`
+        height: 400px;
+        width: 555px;
+    `}
+    ${media.sm`
+        height: 400px;
+        width: 400px;
     `}
 `;

@@ -24,18 +24,20 @@ import { getGenaiData } from 'api/genaiApi';
 
 import { ProdIds } from 'utils/helpers/products';
 
-const Step3 = () => {
+const Step3 = ({ goTo }: any) => {
     const values = useSelector((state: RootState) => state.values);
     const { isProcessing } = useSelector((state: RootState) => state.stages);
     const { uploadImage, defaultImage, isFemale, age, skinTone } = useSelector((state: RootState) => state.values);
     const imageSource: string | null | any = uploadImage?.source || defaultImage?.source;
+    const product = useSelector((state: RootState) => state.productsData.product);
+
 
     const dispatch = useDispatch();
 
     // const element = document.getElementById('web-modal');
     // const productShopifyId = element?.getAttribute('product-id');
     // const storedProductShopifyId = localStorage.getItem('productShopifyId');
-    const storedProductShopifyId = '8758655516907'
+    const storedProductShopifyId = '7866351386807'
 
     const endpoint = ProdIds.filter(prod => prod.productId === storedProductShopifyId)
 
@@ -61,10 +63,12 @@ const Step3 = () => {
 
     const _handleSet = async () => {
         const presetModelResultId = await getGenaiData(isFemale, skinTone?.Skin, age?.Age);
+console.log(values, 'foundProduct?.closet_url')
 
         try {
             // TODO
             const response = await fetch(imageSource);
+
 
             const blob = await response.blob();
             const newFile = new File([blob], 'example.png', { type: blob.type });
@@ -83,23 +87,21 @@ const Step3 = () => {
 
 
         set(ref(database, 'new/' + userId), {
-            closetURL: foundProduct?.closet_url,
+            closetURL: values?.closetUrlAPI,
             status: 'new',
             presetBackground: '033',
             presetModel: presetModelResultId,
         }).catch(err => console.log(err))
     };
 
+    useEffect(() => {
+        const fetchData = async () => {
+            await _handleSet();
+        };
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         await _handleSet();
-    //     };
+        fetchData();
+    }, []);
 
-    //     fetchData();
-    // });
-
-    console.log(endpoint[0]?.product_img)
 
     return (
         <div>

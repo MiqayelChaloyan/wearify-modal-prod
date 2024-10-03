@@ -62,6 +62,10 @@ const Navigation: React.FC = () => {
 
     // useEffect(() => _handleResult(), [isResultAvailable]);
 
+    const childrenWithProps = React.Children.map(step, child =>
+        React.cloneElement(child, { goTo})
+    );
+
 
     return (
         <Popup
@@ -70,7 +74,7 @@ const Navigation: React.FC = () => {
             _handleNext={_handleNext}
             _handleTryAgain={_handleTryAgain}
         >
-            {step}
+            {childrenWithProps}
         </Popup>
     )
 };
