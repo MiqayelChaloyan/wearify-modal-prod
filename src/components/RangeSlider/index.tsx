@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-
-import './styles.css';
+import { RangeSliderHeader, RangeSliderInput, RangeSliderInputWrapper, SliderContainer, Title, Value } from './styles';
 
 
 interface RangeSliderProps {
@@ -10,7 +9,7 @@ interface RangeSliderProps {
     title: string;
     value: number;
     onChange: (value: number) => void;
-};
+}
 
 const RangeSlider: React.FC<RangeSliderProps> = ({ min, max, title, value, onChange }) => {
     const sliderRef = useRef<HTMLInputElement>(null);
@@ -37,21 +36,19 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ min, max, title, value, onCha
         slider.style.background = bg;
     };
 
-
     return (
-        <div className='slider'>
-            <div className='range-slider__header'>
+        <SliderContainer>
+            <RangeSliderHeader>
                 <div>
-                    <h2 className='range-slider__title'>{title} <span>*</span> (CM)</h2>
+                    <Title>{title} <span>*</span> (CM)</Title>
                 </div>
                 <div>
-                    <span className="range-slider__value">{value}</span>
+                    <Value>{value}</Value>
                 </div>
-            </div>
-            <div className="range-slider">
-                <input
+            </RangeSliderHeader>
+            <RangeSliderInputWrapper>
+                <RangeSliderInput
                     ref={sliderRef}
-                    className="range-slider__range"
                     type="range"
                     value={value}
                     min={min}
@@ -59,18 +56,12 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ min, max, title, value, onCha
                     onChange={handleInputChange}
                     style={{ background: settings.background }}
                 />
-            </div>
-        </div>
+            </RangeSliderInputWrapper>
+        </SliderContainer>
     );
 };
 
 export default RangeSlider;
-
-
-
-
-
-
 
 
 

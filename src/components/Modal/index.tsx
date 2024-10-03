@@ -19,8 +19,10 @@ import { Texts } from 'utils/constants';
 
 import { colors } from 'themes';
 
-import { Button, Text, Loading, ModalContainer, PopupButton, PopupFitButton, HideAllButtons } from './styles';
+import { Button, Text, Loading, ModalContainer, PopupButton, PopupFitButton, HideAllButtons, Overlay, Container } from './styles';
 import { handleSwitchStatusPopupFit } from 'store/redux/features/popupFitState';
+import Navigation from 'components/Popup/navigation';
+import NavigationFit from 'components/PopupFit/navigation';
 
 
 type Props = {
@@ -43,11 +45,15 @@ const Modal = ({ children }: Readonly<Props>) => {
         dispatch(handleSwitchStatusPopup());
     };
 
-
     const handleClose = () => {
-        const modal = document.getElementById('web-modal');
-        if (modal) {
+        const bg = document.getElementById('web-modal');
+        const modal = document.getElementById('modal');
+        localStorage.removeItem('productShopifyId');
+
+        if (modal && bg) {
+            bg.style.display = "none";
             modal.style.display = "none";
+
         }
     };
 
@@ -64,38 +70,45 @@ const Modal = ({ children }: Readonly<Props>) => {
     // let load = isLoading || closetUrl.trim().length > 0;
 
     return (
-        <ModalContainer id='web-modal'>
-            <Button $isLoad={isLoading} onClick={handleClose}>
-                <IoClose size={30} color={colors.gray} />
-            </Button>
-            {children}
-            <PopupFitButton disabled={!!isStageTwoProcessing} $isLoad={isLoading} onClick={_handleChangePopupFit}>
-                <FitIcon fill={'rgb(235, 235, 237)'} />
-            </PopupFitButton>
-            <PopupButton disabled={!closetUrl && !!isStageTwoProcessing} $isLoad={isLoading} onClick={_handleChangePopup}>
-                <PeopleIcon fill={'rgb(235, 235, 237)'} />
-            </PopupButton>
-            <FITHide />
 
-            {/* {closetUrl?.trim() && (
+        <Container id='web-modal'>
+            <Overlay>
+                <div />
+            </Overlay>
+
+   
+            <ModalContainer id='modal'>
+                <Button $isLoad={isLoading} onClick={handleClose}>
+                    <IoClose size={30} color={colors.gray} />
+                </Button>
+                {children}
+                <PopupFitButton disabled={!!isStageTwoProcessing} $isLoad={isLoading} onClick={_handleChangePopupFit}>
+                    <FitIcon fill={'rgb(235, 235, 237)'} />
+                </PopupFitButton>
+                <PopupButton disabled={!closetUrl && !!isStageTwoProcessing} $isLoad={isLoading} onClick={_handleChangePopup}>
+                    <PeopleIcon fill={'rgb(235, 235, 237)'} />
+                </PopupButton>
+                <FITHide />
+                {/* {closetUrl?.trim() && (
                 <>
                     <HideAllButtons>
                         <div />
                     </HideAllButtons>
                 </>
             )} */}
-            {isStageTwoProcessing && (
-                <>
-                    <FITHide />
-                    <GroupHide />
-                </>
-            )}
+                {isStageTwoProcessing && (
+                    <>
+                        <FITHide />
+                        <GroupHide />
+                    </>
+                )}
 
-            <Loading $isactive={isStageTwoProcessing}>
-                <Text>{Texts.largeLoading}</Text>
-                <Loader duration={60} isActive={isStageTwoProcessing} />
-            </Loading>
-        </ModalContainer>
+                <Loading $isactive={isStageTwoProcessing}>
+                    <Text>{Texts.largeLoading}</Text>
+                    <Loader duration={60} isActive={isStageTwoProcessing} />
+                </Loading>
+            </ModalContainer>
+        </Container>
     )
 };
 

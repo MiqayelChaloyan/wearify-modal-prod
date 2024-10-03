@@ -56,7 +56,7 @@ export const Overlay = styled.div`
     left: 0;
     background-color: var(--dark-gray);
     z-index: 2000;
-    opacity: 0.75;
+    opacity: 0.85;
     ${media["2xl"]`
         height: 500px;
     `}

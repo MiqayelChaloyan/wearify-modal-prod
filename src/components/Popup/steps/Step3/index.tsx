@@ -33,12 +33,14 @@ const Step3 = () => {
     const dispatch = useDispatch();
 
     // const element = document.getElementById('web-modal');
-    // const productId = element?.getAttribute('product-id');
+    // const productShopifyId = element?.getAttribute('product-id');
+    const storedProductShopifyId = localStorage.getItem('productShopifyId');
+
     // const productId = '8752854466795'
 
     // const foundProduct = data.find(product => product.id === productId);
-    const productId = '58';
-    const endpoint = ProdIds.filter(prod => prod.productId === productId)
+    // const productId = '58';
+    const endpoint = ProdIds.filter(prod => prod.productId === storedProductShopifyId)
 
     const productsData = useSelector((state: RootState) => state.productsData.data);
     const foundProduct = productsData.find(product => product?.id == endpoint[0]?.id);

@@ -30,6 +30,63 @@ export const GlobalStyle = createGlobalStyle`
     --font-weight-black: 900;
 
     --transition: .5s;
+
+
+
+    model-viewer {
+      width: 636px !important;
+      height: 500px;
+    }
+
+    model-viewer::part(default-progress-bar) {
+      display: none;
+    }
+
+    model-viewer::part(default-ar-button) {
+      display: none;
+    }
+
+    // @media screen and (max-width: 1536px) {
+    //   model-viewer {
+    //     width: 100%;
+    //     height: 320px;
+    //   }
+    // }
+
+    // @media screen and (max-width: 1280px) {
+    //   model-viewer {
+    //     width: 100%;
+    //     height: 320px;
+    //   }
+    // }
+
+    // @media screen and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 0) {
+    //   model-viewer {
+    //     width: 100%;
+    //     height: 320px;
+    //   }
+    // }
+
+    // @media screen and (max-width: 768px) {
+    //   model-viewer {
+    //     width: 100%;
+    //     height: 320px;
+    //   }
+    // }
+
+    // @media screen and (max-width: 640px) {
+    //   model-viewer {
+    //     width: 100%;
+    //     height: 320px;
+    //   }
+    // }
+
+    // @media screen and (max-width: 320px) {
+    //   model-viewer {
+    //     width: 100%;
+    //     height: 320px;
+    //   }
+    // }
   }
 `;
 

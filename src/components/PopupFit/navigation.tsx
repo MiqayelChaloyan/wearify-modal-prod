@@ -18,7 +18,6 @@ import { RootState } from 'store/redux';
 const NavigationFit: React.FC = () => {
     const product = useSelector((state: RootState) => state.productsData.product);
     const { isFemale, skin, height, weight } = useSelector((state: RootState) => state.values);
-    let gender = isFemale ? 1 : 0;
 
     const dispatch = useDispatch();
 
@@ -28,6 +27,7 @@ const NavigationFit: React.FC = () => {
             <Step2 />,
         ]);
 
+        console.log(height, weight)
     const _handleNext = () => {
         if (currentStepIndex < 1) {
             return next();
@@ -36,7 +36,8 @@ const NavigationFit: React.FC = () => {
         if (currentStepIndex === 1) {
             const closet_url = product?.closet_url.split('?')[0];
 
-            let url = `${closet_url}?&avatar_info=${gender}_3e35445aaa7d49a6acc00087ef6c22bd_${height}_${weight}_${skin?.ID}${QUERY}`;
+            let url = `${closet_url}?&avatar_info=${isFemale}_3e35445aaa7d49a6acc00087ef6c22bd_${height}_${weight}_${0}${QUERY}`;
+console.log(url);
 
             dispatch(ADD_CLOSET_URL(url));
             dispatch(handleSwitchStatusPopupFit());

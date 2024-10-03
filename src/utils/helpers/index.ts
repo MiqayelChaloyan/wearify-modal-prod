@@ -2,12 +2,12 @@ const loacl = [
     {
         id: 1,
         imagePath: 'https://drive.google.com/thumbnail?id=19ggDJEYxtxlNXDVn5qBDFbQdOLK7RVVY',
-        isFemale: false
+        gender: 0
     },
     {
         id: 2,
         imagePath: 'https://drive.google.com/thumbnail?id=1oRsnLPz33xb_cHtC4KLVkcS9hOiRjgOJ',
-        isFemale: true
+        gender: 1
     }
 ];
 

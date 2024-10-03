@@ -10,7 +10,7 @@ import MEASUREMENTS from 'utils/constants/initialValues';
 interface MeasurementsState {
     skinTone: PersonAttribute | null;
     age: PersonAttribute | null;
-    isFemale: boolean;
+    isFemale: number;
     defaultImage: Image | null;
     uploadImage: Image | null;
     height: number;
@@ -37,8 +37,8 @@ const measurementsSlice = createSlice({
         INITIALIZE_STATE: () => {
             return { ...initialState };
         },
-        UPDATE_DEFAULT_IMAGE: (state, action: PayloadAction<boolean>) => {
-            const defaultImageObj = loacl.find(item => item.isFemale == action.payload);
+        UPDATE_DEFAULT_IMAGE: (state, action: PayloadAction<number>) => {
+            const defaultImageObj = loacl.find(item => item.gender == action.payload);
             if (defaultImageObj) {
                 state.defaultImage = {
                     id: uuidv4(),

@@ -9,6 +9,10 @@ type LoadingProps = {
     $isactive: boolean;
 };
 
+export const Container = styled.div`
+    display: none;
+`;
+
 export const ModalContainer = styled.div`
     display: none;
     width: 636px;
@@ -50,7 +54,7 @@ export const ModalContainer = styled.div`
 export const Button = styled.button<ButtonProps>`
     display: ${({ $isLoad }) => ($isLoad ? 'block' : 'none')};
     position: absolute;
-    z-index: 100000000;
+    z-index: 1000;
     border: none;
     background: none;
     padding: 10px;
@@ -180,5 +184,16 @@ export const HideAllButtons = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-    z-index: 200000;
-`
+    z-index: 100000;
+`;
+
+export const Overlay = styled.div`
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--dark-gray);
+    z-index: 100000;
+    opacity: 0.75;
+`;

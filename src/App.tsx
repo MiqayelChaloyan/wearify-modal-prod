@@ -1,17 +1,18 @@
 import { useEffect } from 'react';
 
 import Route from './navigation';
+import { useDispatch } from 'react-redux';
+import { addData } from 'store/redux/features/productsDataState';
 
 import { getClothesData } from 'api/data';
 import { GlobalStyle } from './styles/globalStyles';
 
 import '../src/styles/styles.css';
-import { useDispatch } from 'react-redux';
-import { addData } from 'store/redux/features/productsDataState';
-
 
 export default function App() {
   const dispatch = useDispatch();
+
+  // localStorage.setItem('productShopifyId', '8752854466795');
 
   useEffect(() => {
     const fetchClothesData = async () => {

@@ -4,7 +4,7 @@ import { loacl, FEMALE_IMAGES, MALE_IMAGES } from 'utils/helpers';
 const MEASUREMENTS = {
     skinTone: null,
     age: null,
-    isFemale: false,
+    isFemale: 0,
     defaultImage: null,
     uploadImage: null,
     height: 162,
@@ -14,7 +14,8 @@ const MEASUREMENTS = {
 };
 
 export const getDefaultValues = (isFemale) => {
-    const defaultImageObj = loacl.find(item => item.isFemale === isFemale);
+    console.log(isFemale)
+    const defaultImageObj = loacl.find(item => item.gender === isFemale);
     const imagesArray = isFemale ? FEMALE_IMAGES : MALE_IMAGES;
     const skinTone = imagesArray.SKIN_TONE[3];
     const age = imagesArray.AGE[2];

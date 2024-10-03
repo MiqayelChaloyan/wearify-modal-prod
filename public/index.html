@@ -7,6 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
   <meta name="description" content="Web site created using create-react-app" />
+
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <script type="module" src="https://unpkg.com/@google/model-viewer@v0.5.0/dist/model-viewer.js"></script>
+  <script src="https://unpkg.com/fullscreen-polyfill@1.0.2/dist/fullscreen.polyfill.js"></script>
+
   <title>Wearify</title>
 </head>
 
@@ -22,6 +27,7 @@
 
       document.getElementById("w2w-button").onclick = function () {
         document.getElementById("web-modal").style.display = "block"
+        document.getElementById("modal").style.display = "block"
       }
 
     });
