@@ -24,7 +24,7 @@ import { getGenaiData } from 'api/genaiApi';
 
 import { ProdIds } from 'utils/helpers/products';
 
-const Step3 = ({ goTo }: any) => {
+const Step3 = () => {
     const values = useSelector((state: RootState) => state.values);
     const { isProcessing } = useSelector((state: RootState) => state.stages);
     const { uploadImage, defaultImage, isFemale, age, skinTone, closetUrlAPI } = useSelector((state: RootState) => state.values);
@@ -36,8 +36,8 @@ const Step3 = ({ goTo }: any) => {
 
     // const element = document.getElementById('web-modal');
     // const productShopifyId = element?.getAttribute('product-id');
-    // const storedProductShopifyId = localStorage.getItem('productShopifyId');
-    const storedProductShopifyId = '8758648307947'
+    const storedProductShopifyId = localStorage.getItem('productShopifyId');
+    // const storedProductShopifyId = '8752854466795'
 
     const endpoint = ProdIds.filter(prod => prod.productId === storedProductShopifyId)
 
@@ -63,12 +63,10 @@ const Step3 = ({ goTo }: any) => {
 
     const _handleSet = async () => {
         const presetModelResultId = await getGenaiData(isFemale, skinTone?.Skin, age?.Age);
-console.log(values, 'foundProduct?.closet_url')
 
         try {
             // TODO
             const response = await fetch(imageSource);
-
 
             const blob = await response.blob();
             const newFile = new File([blob], 'example.png', { type: blob.type });
@@ -85,16 +83,14 @@ console.log(values, 'foundProduct?.closet_url')
             isAvatarError: false,
         }).catch(err => console.log(err));
 
-
-        console.log(product?.screenshot_url, 'product?.screenshot_url');
         
         set(ref(database, 'new/' + userId), {
-            // closetURL: closetUrlAPI,
-            closetURL: product?.screenshot_url ,
+            closetURL: closetUrlAPI,
+            productId: foundProduct?.id,
             status: 'new',
             presetBackground: '033',
             presetModel: presetModelResultId,
-        }).catch(err => console.log(err))
+        }).catch(err => console.log(err));
     };
 
     useEffect(() => {

@@ -36,8 +36,9 @@ const measurementsSlice = createSlice({
         DELETE_IMAGE: (state) => {
             state.uploadImage = null;
         },
-        INITIALIZE_STATE: () => {
-            return { ...initialState };
+        INITIALIZE_STATE: (state) => {
+            let url = state.closetUrlAPI;
+            return { ...initialState, closetUrlAPI: url };
         },
         UPDATE_DEFAULT_IMAGE: (state, action: PayloadAction<number>) => {
             const defaultImageObj = loacl.find(item => item.gender == action.payload);

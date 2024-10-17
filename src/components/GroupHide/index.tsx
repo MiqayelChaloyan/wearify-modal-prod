@@ -4,7 +4,9 @@ import { Container } from './styles';
 
 
 const GroupHide = () => {
-    return (<Container />)
+    return (<Container >
+        <div/>
+    </Container>)
 };
 
 export default React.memo(GroupHide);

@@ -3,13 +3,16 @@ import React, { useEffect, useState } from 'react';
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
 import { Image, ImageError } from './styles';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/redux';
+
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const Step4 = () => {
     const { uploadImage, defaultImage, isFemale, age, skinTone } = useSelector((state: RootState) => state.values);
     // const imageSource: string | any = uploadImage?.source || defaultImage?.source;
     // const { isResultAvailable } = useSelector((state: RootState) => state.stages);
+
 
     const [url, setUrl] = useState<string>('');
     const userId = uploadImage?.id || defaultImage?.id;
@@ -20,7 +23,6 @@ const Step4 = () => {
     useEffect(() => {
         getDownloadURL(starsRef)
             .then((url) => {
-                // console.log(url, '------------------------------------')
                 setUrl(url)
             })
             .catch(_ => {
@@ -28,17 +30,7 @@ const Step4 = () => {
             })
     }, []);
 
-    if (!url) {
-        return (
-            <div>
-                <ImageError
-                    src='https://drive.google.com/thumbnail?id=1CNWYLynGX3S1nOCZIJblI9GBuCFzpYE1'
-                    alt='result not found'
-                    loading="lazy"
-                />
-            </div>
-        )
-    }
+    delay(2000);
 
     return (
         <div>

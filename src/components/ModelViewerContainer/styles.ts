@@ -40,14 +40,20 @@ export const Button = styled.button`
     z-index: 20000000;
     text-decoration: none;
     border: none;
+    cursor: pointer;
 `;
 
 
 export const Box = styled.div`
     position: absolute;
     z-index: 10;
-    // background-color: #ededed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    background-color: #ededed;
+    width: 500px;
+    height: 400px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
 `

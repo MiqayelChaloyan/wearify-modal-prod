@@ -12,6 +12,7 @@ import { Box, Button, Image, Subtitle, Text } from './styles';
 
 const Step2 = () => {
     const { isFemale, skinTone, age } = useSelector((state: RootState) => state.values);
+    console.log(isFemale, 'isFemale')
     const data = isFemale ? FEMALE_IMAGES : MALE_IMAGES;
     const dispatch = useDispatch();
 

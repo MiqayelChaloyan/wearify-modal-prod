@@ -7,6 +7,7 @@ import { finalizeProcessing, setStageTwoProcessing } from 'store/redux/features/
 import { RootState } from 'store/redux';
 
 import { IoClose } from 'react-icons/io5';
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
 import Loader from 'components/Loader';
 import FITHide from 'components/FITHide';
@@ -21,7 +22,7 @@ import { colors } from 'themes';
 
 import { Button, Text, Loading, ModalContainer, PopupButton, PopupFitButton, HideAllButtons, Overlay, Container, BackButton, DepArContainer, ModalContainerDepAr } from './styles';
 import { handleSwitchStatusPopupFit } from 'store/redux/features/popupFitState';
-import { ADD_CLOSET_URL, INITIALIZE_LINK } from 'store/redux/features/valuesState';
+import { ADD_CLOSET_URL, INITIALIZE_LINK, UPDATE_DATA } from 'store/redux/features/valuesState';
 import ToggleSwitch from 'components/ToggleSwitch';
 import { ProdIds } from 'utils/helpers/products';
 import IframeContainer from 'components/DeepAr';
@@ -33,11 +34,12 @@ type Props = {
 
 const Modal = ({ children }: Readonly<Props>) => {
     const { isLoading } = useSelector((state: RootState) => state.loaderCloSet);
-    const { isStageTwoProcessing } = useSelector((state: RootState) => state.stages);
-    const { closetUrl } = useSelector((state: RootState) => state.values);
+    const { isStageTwoProcessing, isProcessing } = useSelector((state: RootState) => state.stages);
+    const { closetUrl, uploadImage, defaultImage } = useSelector((state: RootState) => state.values);
     const product = useSelector((state: RootState) => state.productsData.product);
-   
+
     const storedProductShopifyId = localStorage.getItem('productShopifyId');
+    // const storedProductShopifyId = '7872547586231'
     const endpoint = ProdIds.filter(prod => prod.id === product?.id || prod.productId === storedProductShopifyId);
 
     const dispatch = useDispatch();
@@ -67,7 +69,7 @@ const Modal = ({ children }: Readonly<Props>) => {
         const timer = setTimeout(() => {
             dispatch(setStageTwoProcessing(false));
             dispatch(finalizeProcessing(true));
-        }, 60000); // 60 seconds 
+        }, 120000); // 120 seconds 
 
         return () => clearTimeout(timer);
     }, []);
@@ -76,15 +78,13 @@ const Modal = ({ children }: Readonly<Props>) => {
         dispatch(INITIALIZE_LINK(''));
     }
 
-    console.log(endpoint[0])
+    console.log(closetUrl?.trim() !== '')
+
     return (
         <>
             {endpoint[0]?.is_depar ? (
                 <DepArContainer id='web-modal'>
                     <ModalContainerDepAr id='modal'>
-                        {/* <ButtonDeepAr onClick={handleClose}>
-                            <IoClose size={30} color={colors.gray} />
-                        </ButtonDeepAr> */}
                         {children}
                     </ModalContainerDepAr>
                 </DepArContainer>
@@ -103,10 +103,10 @@ const Modal = ({ children }: Readonly<Props>) => {
                         {endpoint[0]?.is_flag && (
                             <>
                                 <PopupFitButton disabled={!!isStageTwoProcessing} $isLoad={isLoading} onClick={_handleChangePopupFit}>
-                                    <FitIcon fill={!!isStageTwoProcessing ? 'red' : 'rgb(235, 235, 237)'} />
+                                    <FitIcon fill={!!isStageTwoProcessing ? '#ccc' : 'rgb(235, 235, 237)'} />
                                 </PopupFitButton>
                                 <PopupButton disabled={!!isStageTwoProcessing} $isLoad={isLoading} onClick={_handleChangePopup}>
-                                    <PeopleIcon fill={!!isStageTwoProcessing ? 'red' : 'rgb(235, 235, 237)'} />
+                                    <PeopleIcon fill={!!isStageTwoProcessing ? '#ccc' : 'rgb(235, 235, 237)'} />
                                 </PopupButton>
                                 <FITHide />
                                 {closetUrl?.trim() && (
@@ -129,7 +129,7 @@ const Modal = ({ children }: Readonly<Props>) => {
 
                         <Loading $isactive={isStageTwoProcessing}>
                             <Text>{Texts.largeLoading}</Text>
-                            <Loader duration={60} isActive={isStageTwoProcessing} />
+                            <Loader duration={120} isActive={isStageTwoProcessing} />
                         </Loading>
                     </ModalContainer>
                 </Container>

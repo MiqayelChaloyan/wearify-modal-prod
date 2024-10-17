@@ -128,23 +128,23 @@ export const PopupFitButton = styled.button<ButtonProps>`
     width: 55px;
     height: 50px;
     right: 20px;
-    bottom: 252px;
+    bottom: 253px;
     background-color: transparent;
     transition: transform 0.3s ease;
     &:hover {
         transform: scale(1.1);
     }
     ${media["2xl"]`
-        bottom: 252px;
+        bottom: 253px;
     `}
     ${media.xs`
-        bottom: 252px;
+        bottom: 253px;
     `}
     ${media.xl`
-        bottom: 252px;
+        bottom: 253px;
     `}
     ${media.lg`
-        bottom: 252px;
+        bottom: 253px;
     `}
     ${media.md`
         bottom: 153px;

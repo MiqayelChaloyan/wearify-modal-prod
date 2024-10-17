@@ -17,7 +17,7 @@ const ModelViewerContainer = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleChange = () => {
-        setIsOpen(true)
+        setIsOpen(!isOpen)
     };
 
     useEffect(() => {
@@ -29,15 +29,21 @@ const ModelViewerContainer = () => {
         <div>
             {isOpen && (
                 <Box>
-                    <img src='https://drive.google.com/thumbnail?id=1Pxce-U7OWTaCQUSWZPfOVs19-gQ7rEjd' alt='QR'/>
+                    <img src='https://drive.google.com/thumbnail?id=1Pxce-U7OWTaCQUSWZPfOVs19-gQ7rEjd' alt='QR' />
                 </Box>
             )}
-            
+
             {isLoading ? (
                 endpoint[0].productId === '7872547586231' ? (
-                    <Button onClick={handleChange}>
-                        Try on-Me
-                    </Button>
+                    isOpen ? (
+                        <Button onClick={handleChange}>
+                            Back
+                        </Button>
+                    ) : (
+                        <Button onClick={handleChange}>
+                            Try on-Me
+                        </Button>
+                    )
                 ) : (
                     <Link href={product?.closet_url} target="_blank">
                         Try on-Me

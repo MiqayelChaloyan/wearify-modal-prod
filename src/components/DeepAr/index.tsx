@@ -43,7 +43,9 @@ const IframeContainer = () => {
     const [isVisible, setIsVisible] = useState(false);
     // const element = document.getElementById('web-modal');
     // const productShopifyId = element?.getAttribute('product-id');
-    const storedProductShopifyId = localStorage.getItem('productShopifyId');
+    // const storedProductShopifyId = localStorage.getItem('productShopifyId');
+    const storedProductShopifyId = '8758648307947' // element?.getAttribute('product-id');
+
     // const storedProductShopifyId = '7866350043319'
     // const product = useSelector((state: RootState) => state.productsData.product);
     const endpoint = ProdIds.filter(prod => prod.productId === storedProductShopifyId);

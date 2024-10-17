@@ -8,6 +8,7 @@ import { getClothesData } from 'api/data';
 import { GlobalStyle } from './styles/globalStyles';
 
 import '../src/styles/styles.css';
+import { UPDATE_DATA } from 'store/redux/features/valuesState';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ export default function App() {
       try {
         const { data } = await getClothesData();
         dispatch(addData(data));
+        dispatch(UPDATE_DATA({ isFemale: data.gender }))
       } catch (error) {
         console.error("Error fetching clothes data:", error);
       }

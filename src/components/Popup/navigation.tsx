@@ -37,9 +37,9 @@ const Navigation: React.FC = () => {
             return next();
         }
 
-        if (currentStepIndex === 2) {
-            return goTo(0);
-        }
+        // if (currentStepIndex === 2) {
+        //     return goTo(0);
+        // }
     }
 
     const _handleBack = () => {
@@ -53,18 +53,14 @@ const Navigation: React.FC = () => {
     }
 
 
-    // const _handleResult = () => {
-    //     if (isResultAvailable) {
-    //         goTo(3);
-    //         dispatch(handleSwitchStatusPopup());
-    //     }
-    // }
+    const _handleResult = () => {
+        if (isResultAvailable) {
+            goTo(3);
+            dispatch(handleSwitchStatusPopup());
+        }
+    }
 
-    // useEffect(() => _handleResult(), [isResultAvailable]);
-
-    const childrenWithProps = React.Children.map(step, child =>
-        React.cloneElement(child, { goTo})
-    );
+    useEffect(() => _handleResult(), [isResultAvailable]);
 
 
     return (
@@ -74,7 +70,7 @@ const Navigation: React.FC = () => {
             _handleNext={_handleNext}
             _handleTryAgain={_handleTryAgain}
         >
-            {childrenWithProps}
+            {step}
         </Popup>
     )
 };
